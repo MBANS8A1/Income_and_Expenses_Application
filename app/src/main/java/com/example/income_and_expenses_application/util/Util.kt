@@ -24,7 +24,7 @@ object Util {
     )
 }
 
-//returns the date object a String in dd-MM-yyyy format
+//returns the date object a String in dd/MM/yyyy format
  fun formatDate(
     date: Date
 ):String{
