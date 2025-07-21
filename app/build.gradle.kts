@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -56,4 +57,31 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Accompanist
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.5-beta")
+
+    // Extended Icons
+    implementation ("androidx.compose.material:material-icons-extended")
+
+    // Navigation Compose
+    val navVersion = "2.9.2" // Use the latest version
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
+    // DataStore Preferences
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    val roomVersion = "2.5.1"
+    implementation ("androidx.room:room-runtime:$roomVersion")
+    implementation ("androidx.room:room-ktx:$roomVersion")
+    implementation("androidx.room:room-compiler:$roomVersion")
+    testImplementation ("androidx.room:room-testing:$roomVersion")
+    androidTestImplementation ("androidx.room:room-testing:$roomVersion")
+
+    //Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.56.2")
+    implementation("com.google.dagger:hilt-android-compiler:2.56.2")
+    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+
+
 }
