@@ -58,9 +58,29 @@ fun formatDays(days:Int):String{
     }
 }
 
-//will return thr weekday in short day format (e.g."Mon")
+//will return the weekday in short weekday format (e.g."Mon")
 fun formatDays(date:Date):String{
     val sdf = SimpleDateFormat("EE",Locale.getDefault())
     return sdf.format(date)
 }
 
+//categorize the expenses into colours
+fun getColour(amount: Float, colours: List<Color>): Color {
+    return when {
+        amount < 500 -> {
+            colours[0]
+        }
+        amount < 1000 -> {
+            colours[1]
+        }
+        amount < 5000 -> {
+            colours[2]
+        }
+        amount < 10000 -> {
+            colours[3]
+        }
+        else -> {
+            colours[4]
+        }
+    }
+}
