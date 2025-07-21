@@ -43,3 +43,24 @@ private fun formatDate(
     return SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         .format(cal.time)
 }
+
+//maps the week number to the String equivalent
+fun formatDays(days:Int):String{
+    return when(days) {
+        1 -> "Mon"
+        2 -> "Tue"
+        3 -> "Wed"
+        4 -> "Thurs"
+        5 -> "Fri"
+        6 -> "Sat"
+        7 -> "Sun"
+        else -> "Unknown"
+    }
+}
+
+//will return thr weekday in short day format (e.g."Mon")
+fun formatDays(date:Date):String{
+    val sdf = SimpleDateFormat("EE",Locale.getDefault())
+    return sdf.format(date)
+}
+
