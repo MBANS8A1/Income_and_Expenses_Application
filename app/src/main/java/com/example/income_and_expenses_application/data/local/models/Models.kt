@@ -19,3 +19,17 @@ data class Expense(
     val entryDate:String,
     val date: Date
 )
+
+@Entity(tableName = "income_table")
+data class Income(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name="income_id")
+    val id: Int = 0,
+    val title: String,
+    val description:String,
+    @ColumnInfo(name="income_amount")
+    val incomeAmount:Double,
+    @ColumnInfo(name="entry_date")
+    val entryDate:String,
+    val date: Date
+)
