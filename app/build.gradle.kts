@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,6 +8,11 @@ plugins {
     id ("kotlin-kapt")
 }
 
+
+
+configurations.all{
+    exclude(group = "com.intellij",module ="annotations")
+}
 android {
     namespace = "com.example.income_and_expenses_application"
     compileSdk = 35
@@ -20,6 +27,12 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    packaging{
+        resources{
+            excludes += ("/META-INF/{AL2.0,LGPL2.1}")
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -29,6 +42,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -60,29 +74,33 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //Accompanist
-    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.5-beta")
+    implementation (libs.accompanist.systemuicontroller)
 
     // Extended Icons
-    implementation ("androidx.compose.material:material-icons-extended")
+    implementation (libs.androidx.material.icons.extended)
 
     // Navigation Compose
     val navVersion = "2.9.2" // Use the latest version
-    implementation("androidx.navigation:navigation-compose:$navVersion")
+    implementation(libs.androidx.navigation.compose)
 
     // DataStore Preferences
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.androidx.datastore.preferences)
 
-    val roomVersion = "2.5.1"
-    implementation ("androidx.room:room-runtime:$roomVersion")
-    implementation ("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.room:room-compiler:$roomVersion")
-    testImplementation ("androidx.room:room-testing:$roomVersion")
-    androidTestImplementation ("androidx.room:room-testing:$roomVersion")
+    val roomVersion = "2.7.2"
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.androidx.room.ktx)
+    implementation(libs.androidx.room.compiler)
+    testImplementation (libs.room.testing)
+    androidTestImplementation (libs.room.testing)
 
     //Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.56.2")
-    implementation("com.google.dagger:hilt-android-compiler:2.56.2")
-    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
+    implementation(libs.hilt.android)
+    //implementation("com.google.dagger:hilt-android-compiler:2.56.2")
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.fragment)
+    implementation (libs.androidx.hilt.navigation.compose)
 
 
 }
+
+
