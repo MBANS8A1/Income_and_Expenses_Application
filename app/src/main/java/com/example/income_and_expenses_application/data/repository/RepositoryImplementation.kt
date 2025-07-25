@@ -4,6 +4,7 @@ import com.example.income_and_expenses_application.data.local.ExpenseDao
 import com.example.income_and_expenses_application.data.local.IncomeDao
 import com.example.income_and_expenses_application.data.local.models.Expense
 import com.example.income_and_expenses_application.data.local.models.Income
+import com.example.income_and_expenses_application.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -12,7 +13,7 @@ import javax.inject.Inject
 class RepositoryImplementation @Inject constructor(
     private val incomeDao: IncomeDao,
     private val expenseDao: ExpenseDao,
-    private val dispatcher: CoroutineDispatcher
+  @IoDispatcher  private val dispatcher: CoroutineDispatcher
 ):Repository {
     override val income: Flow<List<Income>>
         get() = incomeDao.getAllIncomes()
