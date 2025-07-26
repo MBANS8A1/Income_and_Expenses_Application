@@ -27,10 +27,18 @@ class HomeViewModel @Inject constructor(
             combine(income,expense){ incomeList: List<Income>,
                                      expenseList: List<Expense>
                 ->
-                
+                homeUiState.copy(
+                    income = incomeList,
+                    expense =expenseList,
+                    totalExpense = expenseList
+                        .sumOf { it.expenseAmount }.toFloat(),
+                    totalIncome = incomeList
+                        .sumOf { it.incomeAmount }.toFloat()
+                )
+
             }
         }
-    }
+    }//init
 }
 
 data class HomeUiState(
