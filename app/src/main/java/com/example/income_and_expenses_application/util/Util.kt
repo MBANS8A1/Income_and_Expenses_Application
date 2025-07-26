@@ -1,6 +1,8 @@
 package com.example.income_and_expenses_application.util
 
 import androidx.compose.ui.graphics.Color
+import com.example.income_and_expenses_application.data.local.models.Expense
+import com.example.income_and_expenses_application.data.local.models.Income
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.util.Calendar
@@ -84,3 +86,85 @@ fun getColour(amount: Float, colours: List<Color>): Color {
         }
     }
 }
+
+
+val incomeList = listOf(
+    Income(
+        incomeAmount = 1000.0,
+        title= "Freelancing",
+        description = "Payment from upwork project",
+        entryDate = formatDate(date),
+        date =  date.time
+    ),
+    Income(
+        incomeAmount = 6000.0,
+        title= "Salary",
+        description = "Payment from permanent job",
+        entryDate = formatDate(date),
+        date =  date.time
+    ),
+    Income(
+        incomeAmount = 3000.0,
+        title= "Side Project",
+        description = "Payment from upwork project",
+        entryDate = formatDate(date),
+        date =  date.time
+    ),
+    Income(
+        incomeAmount = 1000.0,
+        title= "Tutor Project",
+        description = "Payment from students for coding session",
+        entryDate = formatDate(date),
+        date =  date.time
+    ),
+    Income(
+        incomeAmount = 1000.0,
+        title= "Vending Machine",
+        description = "Payment from selling soft drinks",
+        entryDate = formatDate(date),
+        date =  date.time
+    )
+)
+
+val expenseList = listOf(
+    Expense(
+        entryDate = formatDate(date),
+        expenseAmount = 50.0,
+        category= "Entertainment",
+        title = "Netflix Subscription",
+        description = "Paid Netflix for monthly subscription",
+        date = date.time
+    ),
+    Expense(
+        entryDate = formatDate(date),
+        expenseAmount = 100.0,
+        category= "Food and Drinks",
+        title = "Groceries",
+        description = "Paid for monthly groceries",
+        date = date.time
+    ),
+    Expense(
+        entryDate = formatDate(date),
+        expenseAmount = 500.0,
+        category= "Vehicle",
+        title = "Car Maintenance",
+        description = "Paid car tyre, brake pad and oil change",
+        date = date.time
+    ),
+    Expense(
+        entryDate = formatDate(date),
+        expenseAmount = 1000.0,
+        category= "Housing",
+        title = "Rent",
+        description = "Paid for monthly rent for apartment",
+        date = date.time
+    ),
+    Expense(
+        entryDate = formatDate(date),
+        expenseAmount = 230.0,
+        category= "Business Expense",
+        title = "Website Hosting",
+        description = "Paid Hostinger to host my UX/UI bootcamp site",
+        date = date.time
+    )
+)

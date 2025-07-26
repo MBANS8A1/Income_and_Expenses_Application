@@ -43,6 +43,10 @@ class HomeViewModel @Inject constructor(
                 }
         }
     }//init
+
+    fun insertIncome() = viewModelScope.launch {
+        repository.insertIncome()
+    }
 }
 
 data class HomeUiState(
