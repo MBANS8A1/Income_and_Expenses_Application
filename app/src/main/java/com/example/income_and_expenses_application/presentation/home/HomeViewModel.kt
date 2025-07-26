@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.income_and_expenses_application.data.local.models.Expense
 import com.example.income_and_expenses_application.data.local.models.Income
 import com.example.income_and_expenses_application.data.repository.Repository
+import com.example.income_and_expenses_application.util.expenseList
+import com.example.income_and_expenses_application.util.incomeList
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
@@ -45,7 +47,11 @@ class HomeViewModel @Inject constructor(
     }//init
 
     fun insertIncome() = viewModelScope.launch {
-        repository.insertIncome()
+        repository.insertIncome(incomeList.random())
+    }
+
+    fun insertExpense() = viewModelScope.launch {
+        repository.insertExpense(expenseList.random())
     }
 }
 
