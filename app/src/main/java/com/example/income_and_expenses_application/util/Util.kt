@@ -3,6 +3,7 @@ package com.example.income_and_expenses_application.util
 import androidx.compose.ui.graphics.Color
 import com.example.income_and_expenses_application.data.local.models.Expense
 import com.example.income_and_expenses_application.data.local.models.Income
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.util.Calendar
@@ -168,3 +169,9 @@ val expenseList = listOf(
         date = date.time
     )
 )
+
+fun formatAmount(amount:Float):String{
+    return amountDecimalFormat.format(amount)
+}
+
+private val amountDecimalFormat = DecimalFormat("#,###.##")
