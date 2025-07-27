@@ -35,6 +35,9 @@ fun HomeScreen(
                         fontWeight = FontWeight.Bold
                     )
                 }
+                Row{
+
+                }
             }
         }
     }
