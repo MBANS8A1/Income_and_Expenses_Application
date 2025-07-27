@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.example.income_and_expenses_application.util.Util
 
 @Composable
 fun AccountCard(
@@ -33,7 +34,8 @@ fun AccountCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             if(cardIcon != null){
-                val iconColor = if(cardTitle)
+                val iconColor = if(cardTitle == "TOTAL EXPENSE") Util.expenseColour.last()
+                    else Util.incomeColour
             }
 
         }
