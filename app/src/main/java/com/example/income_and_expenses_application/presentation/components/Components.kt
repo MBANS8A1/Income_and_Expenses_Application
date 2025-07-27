@@ -35,7 +35,7 @@ fun AccountCard(
         ){
             if(cardIcon != null){
                 val iconColor = if(cardTitle == "TOTAL EXPENSE") Util.expenseColour.last()
-                    else Util.incomeColour
+                    else Util.incomeColour.last()
             }
 
         }
