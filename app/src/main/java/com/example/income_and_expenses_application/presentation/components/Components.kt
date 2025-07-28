@@ -33,7 +33,7 @@ fun AccountCard(
 ) {
 
     Card(
-        modifier = Modifier
+        modifier = modifier
     ){
         Column(
             verticalArrangement = Arrangement.spacedBy(
