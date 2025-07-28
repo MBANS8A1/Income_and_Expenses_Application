@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.income_and_expenses_application.presentation.home.HomeUiState
 import com.example.income_and_expenses_application.util.Util
 
 @Composable
@@ -69,6 +70,7 @@ fun AccountCard(
 }
 
 
+
 @Composable
 private fun AccountIconItem(
     modifier: Modifier = Modifier,
@@ -89,6 +91,15 @@ private fun AccountIconItem(
             )
         }
     }
+}
+
+
+@Composable
+fun IncomeCard(
+    account: HomeUiState,
+    onClickSeeAll: () -> Unit,
+    onItemClick: (id:Int) -> Unit
+    ){
 }
 
 @Preview(showBackground = true)
