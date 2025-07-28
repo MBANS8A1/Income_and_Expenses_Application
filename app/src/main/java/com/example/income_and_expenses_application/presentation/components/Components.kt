@@ -102,6 +102,19 @@ fun IncomeCard(
     ){
 }
 
+@Composable
+private fun <T> OverViewCard(
+    title: String,
+    amount: Float,
+    onClickSeeAll: () -> Unit,
+    values: (T) -> Float,
+    colors: (T) -> Color,
+    data: List<T>,
+    row:@Composable (T) -> Unit
+) {
+
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun PrevAccountCard() {
