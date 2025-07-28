@@ -112,7 +112,15 @@ private fun <T> OverViewCard(
     data: List<T>,
     row:@Composable (T) -> Unit
 ) {
-
+    Card {
+        Column {
+            Text(
+                text= title,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.padding(12.dp)
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
