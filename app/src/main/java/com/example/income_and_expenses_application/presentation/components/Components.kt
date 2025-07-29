@@ -123,6 +123,22 @@ private fun <T> OverViewCard(
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(12.dp)
             )
+            OverViewDivider(
+                data = data,
+                values = values,
+                colours = colours
+            )
+            Column(
+                modifier = Modifier.padding(
+                    start = 8.dp,
+                    end = 8.dp,
+                    top = 4.dp
+                )
+            ) {
+                data.takeLast(SHOWN_ITEMS).forEach{
+                    row(it)
+                }
+            }
         }
     }
 }
@@ -155,3 +171,5 @@ private fun PrevAccountCard() {
         cardIcon = Icons.Default.ArrowUpward
     )
 }
+
+const val SHOWN_ITEMS = 3
