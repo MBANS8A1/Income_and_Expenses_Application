@@ -18,6 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -138,8 +139,27 @@ private fun <T> OverViewCard(
                 data.takeLast(SHOWN_ITEMS).forEach{
                     row(it)
                 }
+                SeeAllButton(
+                    modifier = Modifier,
+                    onClickSeeAll = onClickSeeAll
+                )
             }
         }
+    }
+}
+
+@Composable
+fun SeeAllButton(
+    modifier: Modifier,
+    onClickSeeAll: () -> Unit
+) {
+    TextButton(
+        onClick = onClickSeeAll,
+        modifier = modifier
+            .height(44.dp)
+            .fillMaxWidth()
+    ){
+        Text("SEE ALL")
     }
 }
 
