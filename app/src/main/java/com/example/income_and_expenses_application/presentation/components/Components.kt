@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.income_and_expenses_application.presentation.home.HomeUiState
 import com.example.income_and_expenses_application.util.Util
+import com.example.income_and_expenses_application.util.getColour
 
 @Composable
 fun AccountCard(
@@ -107,6 +108,21 @@ fun IncomeCard(
     onClickSeeAll: () -> Unit,
     onItemClick: (id:Int) -> Unit
     ){
+
+    OverViewCard(
+        title = "Income",
+        amount = account.totalIncome,
+        onClickSeeAll = onClickSeeAll,
+        data = account.income,
+        values = {it.incomeAmount.toFloat()},
+        colours = { getColour(
+            it.incomeAmount.toFloat(),
+            Util.incomeColour)
+                  },
+        row = 
+
+
+    )
 }
 
 @Composable
