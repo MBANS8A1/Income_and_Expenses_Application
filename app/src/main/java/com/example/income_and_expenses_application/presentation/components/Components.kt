@@ -1,9 +1,13 @@
 package com.example.income_and_expenses_application.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -108,7 +112,7 @@ private fun <T> OverViewCard(
     amount: Float,
     onClickSeeAll: () -> Unit,
     values: (T) -> Float,
-    colors: (T) -> Color,
+    colours: (T) -> Color,
     data: List<T>,
     row:@Composable (T) -> Unit
 ) {
@@ -118,6 +122,24 @@ private fun <T> OverViewCard(
                 text= title,
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(12.dp)
+            )
+        }
+    }
+}
+
+@Composable
+fun <T> OverViewDivider(
+    data: List<T>,
+    values: (T) -> Float,
+    colours: (T) -> Color
+) {
+    Row(modifier = Modifier.fillMaxWidth()){
+        data.forEach{item ->
+            Spacer(
+                modifier = Modifier
+                    .weight(values(item))
+                    .height(1.dp)
+                    .background(colours(item))
             )
         }
     }
