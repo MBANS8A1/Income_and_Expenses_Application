@@ -102,6 +102,8 @@ private fun AccountIconItem(
 }
 
 
+
+
 @Composable
 fun IncomeCard(
     account: HomeUiState,
@@ -123,6 +125,22 @@ fun IncomeCard(
 
 
     )
+}
+
+@Composable
+fun IncomeRow(
+    modifier: Modifier,
+    name: String,
+    description:String,
+    amount:Float,
+    colour: Color
+) {
+    
+}
+
+@Composable
+private fun BaseRow() {
+    
 }
 
 @Composable
