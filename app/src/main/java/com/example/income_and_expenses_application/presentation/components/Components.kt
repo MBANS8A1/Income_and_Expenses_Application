@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowUpward
@@ -161,6 +162,7 @@ private fun BaseRow(
             colour = colour,
             modifier = modifier
         )
+        Spacer(modifier = Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = title,
@@ -175,6 +177,23 @@ private fun BaseRow(
                 overflow = TextOverflow.Ellipsis
             )
         }
+        Spacer(modifier = Modifier.width(16.dp))
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = poundSign,
+                style = typography.titleMedium,
+                modifier = Modifier.align(Alignment.CenterVertically)
+            )
+            Text(
+                text = formattedAmount,
+                style = typography.titleMedium,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                fontWeight = FontWeight.Bold
+            )
+        }
+
     }
 }
 
