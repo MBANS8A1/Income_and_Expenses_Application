@@ -176,7 +176,8 @@ private fun BaseRow(
     val formattedAmount  = formatAmount(amount)
     Row(
         modifier = modifier
-            .height(68.dp)
+            .height(68.dp),
+        verticalAlignment = Alignment.CenterVertically
     ){
         val typography = MaterialTheme.typography
         AccountIndicator(
