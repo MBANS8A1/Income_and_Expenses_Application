@@ -1,6 +1,7 @@
 package com.example.income_and_expenses_application.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,6 +39,7 @@ import com.example.income_and_expenses_application.presentation.home.HomeUiState
 import com.example.income_and_expenses_application.util.Util
 import com.example.income_and_expenses_application.util.formatAmount
 import com.example.income_and_expenses_application.util.getColour
+import com.example.income_and_expenses_application.util.incomeList
 
 @Composable
 fun AccountCard(
@@ -114,7 +116,7 @@ private fun AccountIconItem(
 fun IncomeCard(
     account: HomeUiState,
     onClickSeeAll: () -> Unit,
-    onItemClick: (id:Int) -> Unit
+    onIncomeClick: (id:Int) -> Unit
     ){
 
     OverViewCard(
@@ -126,16 +128,25 @@ fun IncomeCard(
         colours = { getColour(
             it.incomeAmount.toFloat(),
             Util.incomeColour)
-                  },
-        row = 
-
-
-    )
+                  }
+    ){ income ->
+        IncomeRow(
+            name = income.title,
+            description = income.description,
+            amount = income.incomeAmount.toFloat(),
+            colour = getColour(
+                income.incomeAmount.toFloat(),
+                Util.incomeColour),
+            modifier = Modifier.clickable{
+                onIncomeClick.invoke(income.id)
+            }
+            )
+        }
 }
 
 @Composable
 fun IncomeRow(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     name: String,
     description:String,
     amount:Float,
@@ -310,6 +321,18 @@ fun <T> OverViewDivider(
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable()
+fun PrevIncomeCard() {
+    IncomeCard(
+        account = HomeUiState(
+            income = incomeList
+        ),
+        onClickSeeAll = {},
+        onIncomeClick = {}
+    )
 }
 
 @Preview(showBackground = true)
