@@ -141,7 +141,14 @@ fun IncomeRow(
     amount:Float,
     colour: Color
 ) {
-    
+    BaseRow(
+        modifier = modifier,
+        colour = colour,
+        title = name,
+        subtitle = description,
+        amount = amount,
+        negative = false
+    )
 }
 
 @Composable
