@@ -75,6 +75,7 @@ fun HomeScreen(
 
                 }
             }
+            Spacer(modifier = Modifier.size(12.dp))
         }
         item{
             IncomeCard(
@@ -82,6 +83,7 @@ fun HomeScreen(
                 onIncomeClick = onIncomeClick,
                 onClickSeeAll = onClickSeeAllIncome
             )
+            Spacer(modifier = Modifier.size(12.dp))
         }
     }
 }
