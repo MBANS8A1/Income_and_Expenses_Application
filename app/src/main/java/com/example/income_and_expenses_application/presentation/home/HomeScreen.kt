@@ -18,13 +18,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.income_and_expenses_application.presentation.components.AccountCard
+import com.example.income_and_expenses_application.presentation.components.IncomeCard
 import com.example.income_and_expenses_application.ui.theme.Income_and_Expenses_ApplicationTheme
 import com.example.income_and_expenses_application.util.formatAmount
+import com.example.income_and_expenses_application.util.incomeList
 
 @Composable
 fun HomeScreen(
     state: HomeUiState,
-    modifier: Modifier
+    modifier: Modifier,
+    onIncomeClick: (Int) -> Unit,
+    onClickSeeAllIncome: () -> Unit
 ) {
     LazyColumn(
         modifier = modifier
@@ -72,6 +76,13 @@ fun HomeScreen(
                 }
             }
         }
+        item{
+            IncomeCard(
+                account = state,
+                onIncomeClick = onIncomeClick,
+                onClickSeeAll = onClickSeeAllIncome
+            )
+        }
     }
 }
 
@@ -80,8 +91,10 @@ fun HomeScreen(
 private fun PrevHome() {
     Income_and_Expenses_ApplicationTheme{
         HomeScreen(
-            state = HomeUiState(),
-            modifier = Modifier
+            state = HomeUiState(income = incomeList),
+            modifier = Modifier,
+            onIncomeClick = {},
+            onClickSeeAllIncome = {}
         )
     }
 }
@@ -91,8 +104,10 @@ private fun PrevHome() {
 private fun PrevHomeDark() {
     Income_and_Expenses_ApplicationTheme(darkTheme = true){
         HomeScreen(
-            state = HomeUiState(),
-            modifier = Modifier
+            state = HomeUiState(income = incomeList),
+            modifier = Modifier,
+            onIncomeClick = {},
+            onClickSeeAllIncome = {}
         )
     }
 }
