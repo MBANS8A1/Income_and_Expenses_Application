@@ -14,7 +14,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -193,15 +196,34 @@ private fun BaseRow(
                 fontWeight = FontWeight.Bold
             )
         }
-
+        Spacer(modifier = Modifier.width(16.dp))
+        Icon(
+            imageVector = Icons.Filled.ChevronRight,
+            contentDescription = null,
+            modifier = Modifier
+                .padding(end = 12.dp)
+                .size(24.dp)
+        )
     }
+    IncomeExpenseDivider()
 }
+
+@Composable
+fun IncomeExpenseDivider(modifier: Modifier = Modifier) {
+    HorizontalDivider(
+        color = MaterialTheme.colorScheme.background,
+        thickness = 2.dp,
+        modifier = modifier
+        )
+}
+
+
 
 @Composable
 private fun AccountIndicator(colour:Color,modifier: Modifier) {
     Spacer(
         modifier = modifier
-            .size(4.dp,36.dp)
+            .size(4.dp, 36.dp)
             .background(colour)
     )
 }
