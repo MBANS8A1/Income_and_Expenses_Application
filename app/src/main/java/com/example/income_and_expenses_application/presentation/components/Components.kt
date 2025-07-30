@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.income_and_expenses_application.presentation.home.HomeUiState
 import com.example.income_and_expenses_application.util.Util
+import com.example.income_and_expenses_application.util.formatAmount
 import com.example.income_and_expenses_application.util.getColour
 
 @Composable
@@ -139,9 +140,38 @@ fun IncomeRow(
 }
 
 @Composable
-private fun BaseRow() {
-    
+private fun BaseRow(
+    modifier: Modifier,
+    colour: Color,
+    title:String,
+    subtitle: String,
+    amount: Float,
+    negative: Boolean
+
+) {
+    val poundSign = if (negative) "-£" else "£"
+    val formattedAmount  = formatAmount(amount)
+    Row(
+        modifier = modifier
+            .height(68.dp)
+    ){
+        val typography = MaterialTheme.typography
+        AccountIndicator(
+            colour = colour,
+            modifier = modifier
+        )
+    }
 }
+
+@Composable
+private fun AccountIndicator(colour:Color,modifier: Modifier) {
+    Spacer(
+        modifier = modifier
+            .size(4.dp,36.dp)
+            .background(colour)
+    )
+}
+
 
 @Composable
 private fun <T> OverViewCard(
