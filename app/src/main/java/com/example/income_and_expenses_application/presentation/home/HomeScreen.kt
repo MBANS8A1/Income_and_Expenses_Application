@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -32,7 +33,9 @@ fun HomeScreen(
     onIncomeClick: (Int) -> Unit,
     onExpenseClick: (Int) -> Unit,
     onClickSeeAllIncome: () -> Unit,
-    onClickSeeAllExpense: () -> Unit
+    onClickSeeAllExpense: () -> Unit,
+    onInsertIncome: () -> Unit,
+    onInsertExpense: () -> Unit
 
 ) {
     LazyColumn(
@@ -96,6 +99,20 @@ fun HomeScreen(
                 onExpenseClick = onExpenseClick,
                 onClickSeeAll = onClickSeeAllExpense
             )
+        }
+        item{
+            Row{
+                ElevatedButton(
+                    onClick = onInsertIncome
+                ) {
+                    Text(text = "Insert Income")
+                }
+                ElevatedButton(
+                    onClick = onInsertExpense
+                ) {
+                    Text(text = "Insert Expense")
+                }
+            }
         }
     }
 }
