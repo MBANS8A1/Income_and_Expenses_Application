@@ -113,11 +113,33 @@ private fun AccountIconItem(
 
 
 @Composable
+fun ExpenseCard(
+    account: HomeUiState,
+    onClickSeeAll: () -> Unit,
+    onExpenseClick: (id:Int) -> Unit
+    ){
+
+    OverViewCard(
+        title = "Expense",
+        amount = account.totalExpense,
+        onClickSeeAll = onClickSeeAll,
+        data = account.expense,
+        values = {it.expenseAmount.toFloat()},
+        colours = { getColour(
+            it.expenseAmount.toFloat(),
+            Util.expenseColour)
+                  }
+    ){ expense ->
+
+    }
+}
+
+@Composable
 fun IncomeCard(
     account: HomeUiState,
     onClickSeeAll: () -> Unit,
     onIncomeClick: (id:Int) -> Unit
-    ){
+){
 
     OverViewCard(
         title = "Income",
@@ -128,7 +150,7 @@ fun IncomeCard(
         colours = { getColour(
             it.incomeAmount.toFloat(),
             Util.incomeColour)
-                  }
+        }
     ){ income ->
         IncomeRow(
             name = income.title,
@@ -140,8 +162,8 @@ fun IncomeCard(
             modifier = Modifier.clickable{
                 onIncomeClick.invoke(income.id)
             }
-            )
-        }
+        )
+    }
 }
 
 @Composable
