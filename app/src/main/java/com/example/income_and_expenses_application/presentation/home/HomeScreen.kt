@@ -127,7 +127,9 @@ private fun PrevHome() {
             onIncomeClick = {},
             onClickSeeAllIncome = {},
             onExpenseClick = {},
-            onClickSeeAllExpense = {}
+            onClickSeeAllExpense = {},
+            onInsertIncome = {},
+            onInsertExpense = {}
         )
     }
 }
@@ -142,7 +144,9 @@ private fun PrevHomeDark() {
             onIncomeClick = {},
             onClickSeeAllIncome = {},
             onExpenseClick = {},
-            onClickSeeAllExpense = {}
+            onClickSeeAllExpense = {},
+            onInsertIncome = {},
+            onInsertExpense = {}
         )
     }
 }
