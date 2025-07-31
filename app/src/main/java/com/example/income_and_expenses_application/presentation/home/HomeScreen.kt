@@ -18,8 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.income_and_expenses_application.presentation.components.AccountCard
+import com.example.income_and_expenses_application.presentation.components.ExpenseCard
 import com.example.income_and_expenses_application.presentation.components.IncomeCard
 import com.example.income_and_expenses_application.ui.theme.Income_and_Expenses_ApplicationTheme
+import com.example.income_and_expenses_application.util.expenseList
 import com.example.income_and_expenses_application.util.formatAmount
 import com.example.income_and_expenses_application.util.incomeList
 
@@ -28,7 +30,10 @@ fun HomeScreen(
     state: HomeUiState,
     modifier: Modifier,
     onIncomeClick: (Int) -> Unit,
-    onClickSeeAllIncome: () -> Unit
+    onExpenseClick: (Int) -> Unit,
+    onClickSeeAllIncome: () -> Unit,
+    onClickSeeAllExpense: () -> Unit
+
 ) {
     LazyColumn(
         modifier = modifier
@@ -86,7 +91,11 @@ fun HomeScreen(
             Spacer(modifier = Modifier.size(12.dp))
         }
         item{
-
+            ExpenseCard(
+                account = state,
+                onExpenseClick = onExpenseClick,
+                onClickSeeAll = onClickSeeAllExpense
+            )
         }
     }
 }
@@ -96,10 +105,12 @@ fun HomeScreen(
 private fun PrevHome() {
     Income_and_Expenses_ApplicationTheme{
         HomeScreen(
-            state = HomeUiState(income = incomeList),
+            state = HomeUiState(income = incomeList, expense = expenseList),
             modifier = Modifier,
             onIncomeClick = {},
-            onClickSeeAllIncome = {}
+            onClickSeeAllIncome = {},
+            onExpenseClick = {},
+            onClickSeeAllExpense = {}
         )
     }
 }
@@ -109,10 +120,12 @@ private fun PrevHome() {
 private fun PrevHomeDark() {
     Income_and_Expenses_ApplicationTheme(darkTheme = true){
         HomeScreen(
-            state = HomeUiState(income = incomeList),
+            state = HomeUiState(income = incomeList, expense = expenseList),
             modifier = Modifier,
             onIncomeClick = {},
-            onClickSeeAllIncome = {}
+            onClickSeeAllIncome = {},
+            onExpenseClick = {},
+            onClickSeeAllExpense = {}
         )
     }
 }

@@ -130,7 +130,18 @@ fun ExpenseCard(
             Util.expenseColour)
                   }
     ){ expense ->
-
+        ExpenseRow(
+            name = expense.title,
+            description = expense.description,
+            amount = expense.expenseAmount.toFloat(),
+            colour = getColour(
+                expense.expenseAmount.toFloat(),
+                Util.expenseColour
+            ),
+            modifier = Modifier.clickable{
+                onExpenseClick.invoke(expense.id)
+            }
+        )
     }
 }
 
@@ -181,6 +192,24 @@ fun IncomeRow(
         subtitle = description,
         amount = amount,
         negative = false
+    )
+}
+
+@Composable
+fun ExpenseRow(
+    modifier: Modifier = Modifier,
+    name: String,
+    description:String,
+    amount:Float,
+    colour: Color
+) {
+    BaseRow(
+        modifier = modifier,
+        colour = colour,
+        title = name,
+        subtitle = description,
+        amount = amount,
+        negative = true
     )
 }
 
