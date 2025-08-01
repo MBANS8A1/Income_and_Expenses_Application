@@ -14,5 +14,5 @@ class IncomeViewModel @Inject constructor(
 
 
 data class IncomeState(
-    val income: List<Income> = emptyList()
+    val incomes: List<Income> = emptyList()
 )
