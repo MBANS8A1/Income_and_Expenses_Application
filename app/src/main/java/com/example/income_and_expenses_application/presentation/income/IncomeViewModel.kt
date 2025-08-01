@@ -18,6 +18,9 @@ class IncomeViewModel @Inject constructor(
 ):ViewModel() {
     var incomeState by mutableStateOf(IncomeState())
         private set
+    init{
+        getAllIncome()
+    }
 
     fun getAllIncome() = viewModelScope.launch {
         repository.income.collectLatest {
@@ -26,6 +29,12 @@ class IncomeViewModel @Inject constructor(
             )
         }
     }
+
+    fun deleteIncome(id:Int) = viewModelScope.launch {
+        repository.deleteIncome(id)
+    }
+
+
 }
 
 data class IncomeState(
