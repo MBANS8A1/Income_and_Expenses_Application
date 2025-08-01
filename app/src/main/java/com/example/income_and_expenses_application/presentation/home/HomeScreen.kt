@@ -1,6 +1,7 @@
 package com.example.income_and_expenses_application.presentation.home
 
 import android.widget.Space
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,6 +15,7 @@ import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -99,9 +101,15 @@ fun HomeScreen(
                 onExpenseClick = onExpenseClick,
                 onClickSeeAll = onClickSeeAllExpense
             )
+            Spacer(modifier = Modifier.size(12.dp))
+
         }
         item{
-            Row{
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ){
                 ElevatedButton(
                     onClick = onInsertIncome
                 ) {
