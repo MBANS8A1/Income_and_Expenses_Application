@@ -17,7 +17,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
 import com.example.income_and_expenses_application.ui.theme.Income_and_Expenses_ApplicationTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

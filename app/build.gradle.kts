@@ -87,9 +87,12 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     val roomVersion = "2.7.2"
-    implementation (libs.androidx.room.runtime)
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-runtime:$roomVersion")
+    kapt ("androidx.room:room-compiler:$roomVersion")
+    //implementation (libs.androidx.room.runtime)
     implementation (libs.androidx.room.ktx)
-    implementation(libs.androidx.room.compiler)
+    //implementation(libs.androidx.room.compiler)
     testImplementation (libs.room.testing)
     androidTestImplementation (libs.room.testing)
 
