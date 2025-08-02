@@ -2,12 +2,16 @@ package com.example.income_and_expenses_application.presentation.components
 
 import android.graphics.Color
 import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.rememberTransition
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -42,6 +46,17 @@ fun AnimateCircle(
 
 ) {
     val currentState = remember{
-        MutableTransitionState
+        MutableTransitionState(AnimatedCircleProgress.START)
+            .apply{ targetState = AnimatedCircleProgress.END}
+    } //transition state defined
+    //gives the current density (stroke converted from dp to pixels)
+    val stroke  = with(LocalDensity.current){
+        Stroke(5.dp.toPx())
     }
+    val transition = rememberTransition(transitionState = currentState, label = "Circle/Ring")
+}
+
+private enum class AnimatedCircleProgress{
+    START,
+    END
 }
