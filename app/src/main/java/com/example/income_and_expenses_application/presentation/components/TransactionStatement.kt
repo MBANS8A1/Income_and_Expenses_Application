@@ -8,6 +8,7 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
@@ -91,7 +94,21 @@ fun AnimateCircle(
             360f
         }
     }
+    //Now creating a Canvas (with a DrawScope) to draw the arcs
+    Canvas(modifier = modifier) { //size is part of the DrawScope
+        val innerRadius = (size.minDimension - stroke.width)/2 //stay within bounding box
+        val halfSize = size/2.0f
+        val topLeft = Offset(
+            x = halfSize.width - innerRadius,
+            y = halfSize.height - innerRadius
+        )
+        //Get the full size
+        val size  = Size(innerRadius*2,innerRadius*2)
+        //start drawing from (0,innerRadius*2)
+        val startAngle = shift - 90f //shift initially is 0f
+        //Use the proportions to draw the arcs
 
+    }
 
 }
 
