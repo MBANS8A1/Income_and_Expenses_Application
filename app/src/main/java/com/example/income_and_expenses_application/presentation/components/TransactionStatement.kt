@@ -1,6 +1,7 @@
 package com.example.income_and_expenses_application.presentation.components
 
 import android.graphics.Color
+import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat
@@ -49,10 +50,11 @@ fun AnimateCircle(
     modifier: Modifier = Modifier
 
 ) {
+
     val currentState = remember{
         MutableTransitionState(AnimatedCircleProgress.START)
             .apply{ targetState = AnimatedCircleProgress.END}
-    } //transition state defined
+    } //transition state defined from START to END
     //gives the current density (stroke converted from dp to pixels)
     val stroke  = with(LocalDensity.current){
         Stroke(5.dp.toPx())
@@ -66,13 +68,31 @@ fun AnimateCircle(
             easing = LinearOutSlowInEasing
         )},
         label = ""
-    ){progress ->
+    ){progress ->               //targetValueByState
         if(progress == AnimatedCircleProgress.START){
             0f
         }else{
             360f
         }
     }
+
+    val shift by transition.animateFloat(
+        transitionSpec ={ tween(
+            durationMillis = 900,
+            delayMillis = 500,
+            //custom easing (animation) curve
+            easing = CubicBezierEasing(0f,0.75f,0.35f,0.85f)
+        )},
+        label = ""
+    ){progress ->               //targetValueByState
+        if(progress == AnimatedCircleProgress.START){
+            0f
+        }else{
+            360f
+        }
+    }
+
+
 }
 
 private enum class AnimatedCircleProgress{
