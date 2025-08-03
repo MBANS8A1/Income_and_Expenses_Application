@@ -107,12 +107,19 @@ fun AnimateCircle(
         //start drawing from (0,innerRadius*2)
         val startAngle = shift - 90f //shift initially is 0f
         //Use the proportions to draw the arcs
-
+        proportions.forEachIndexed{ index,proportion ->
+            drawArc(
+                color = colours[index]
+                startAngle =
+            )
+        }
     }
-
 }
 
 private enum class AnimatedCircleProgress{
     START,
     END
 }
+
+//divider length for the different incomes in the circle/arc in degrees
+private const val DividerLengthInDegrees = 1.8f
