@@ -49,7 +49,7 @@ fun <T> TransactionStatement(
 @Composable
 fun AnimateCircle(
     proportions: List<Float>,
-    colours: List<Color>,
+    colours: List<androidx.compose.ui.graphics.Color>,
     modifier: Modifier = Modifier
 
 ) {
@@ -105,13 +105,24 @@ fun AnimateCircle(
         //Get the full size
         val size  = Size(innerRadius*2,innerRadius*2)
         //start drawing from (0,innerRadius*2)
-        val startAngle = shift - 90f //shift initially is 0f
+        var startAngle = shift - 90f //shift initially is 0f
         //Use the proportions to draw the arcs
         proportions.forEachIndexed{ index,proportion ->
+            val sweep = proportion * angleOffset
             drawArc(
-                color = colours[index]
-                startAngle =
+                color = colours[index],
+                startAngle = startAngle +  DividerLengthInDegrees / 2,
+                //we want to change the angle Offset based upon the sweep
+                //arc accommodated with divider
+                sweepAngle = sweep - DividerLengthInDegrees,
+                topLeft = topLeft,
+                size = size,
+                //I want to draw an arc not a full circle
+                useCenter = false,
+                style = stroke
             )
+            //as different arcs will be drawn
+            startAngle += sweep
         }
     }
 }
