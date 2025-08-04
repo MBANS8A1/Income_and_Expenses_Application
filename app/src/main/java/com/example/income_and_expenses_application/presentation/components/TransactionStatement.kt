@@ -10,10 +10,14 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -24,6 +28,8 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import com.example.income_and_expenses_application.util.formatAmount
+
 @Composable
 fun <T> TransactionStatement(
     modifier: Modifier = Modifier,
@@ -53,7 +59,26 @@ fun <T> TransactionStatement(
                         .align(Alignment.Center)
                         .fillMaxWidth()
                 )
+                //Text with the <T> amount will be on top of the circular ring in a Box layout
+                Column(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                ){
+                   Text(
+                       text =  circleLabel,
+                       style = MaterialTheme.typography.bodyLarge,
+                       modifier = Modifier.align(Alignment.CenterHorizontally)
+                   )
+                    Text(
+                        text = formatAmount(amountsTotal),
+                        style = MaterialTheme.typography.headlineLarge,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                }
             }
+            Spacer(modifier = Modifier
+                .height(10.dp)
+            )
         }
     }
 }
