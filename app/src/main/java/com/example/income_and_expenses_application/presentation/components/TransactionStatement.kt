@@ -27,7 +27,7 @@ fun <T> TransactionStatement(
     modifier: Modifier = Modifier,
     items: List<T>,
     colours: (T) -> Color,
-    amount: Float,
+    amounts: (T) -> Float,
     amountsTotal: Float,
     circleLabel: String,
     onItemSwiped: (T) -> Unit,
@@ -39,7 +39,12 @@ fun <T> TransactionStatement(
     ) {
         item{
             Box(modifier = Modifier.padding(16.dp)){
+                //extracting items
+                val transProportions = items.extractProportions{amounts(it)}
 
+                AnimateCircle( //need extension function for proportions above
+
+                )
             }
         }
     }
@@ -134,3 +139,14 @@ private enum class AnimatedCircleProgress{
 
 //divider length for the different incomes in the circle/arc in degrees
 private const val DividerLengthInDegrees = 1.8f
+
+//create extension function to extract the proportions
+fun <E> List<E>.extractProportions(selector: (E) ->Float): List<Float>{
+    /*So if we have 10 Income items we need to extract them;
+    next sum the incomes and calculate the proportion of each Income on the total
+    */
+    //this refers to the List
+    var total = this.sumOf{selector(it).toDouble()}
+    //Now we want to return a list with these particular proportions
+    return this.map{(selector(it)/total).toFloat()}
+}
