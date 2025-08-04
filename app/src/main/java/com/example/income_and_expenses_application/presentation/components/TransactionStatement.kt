@@ -10,23 +10,25 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-
 @Composable
 fun <T> TransactionStatement(
     modifier: Modifier = Modifier,
     items: List<T>,
-    colours: (T) -> Color,
+    colours: (T) -> androidx.compose.ui.graphics.Color,
     amounts: (T) -> Float,
     amountsTotal: Float,
     circleLabel: String,
@@ -41,9 +43,15 @@ fun <T> TransactionStatement(
             Box(modifier = Modifier.padding(16.dp)){
                 //extracting items
                 val transProportions = items.extractProportions{amounts(it)}
+                val circularRingColour = items.map{ colours(it)}
 
                 AnimateCircle( //need extension function for proportions above
-
+                   proportions = transProportions,
+                    colours = circularRingColour,
+                    modifier = Modifier
+                        .height(300.dp)
+                        .align(Alignment.Center)
+                        .fillMaxWidth()
                 )
             }
         }
@@ -141,7 +149,7 @@ private enum class AnimatedCircleProgress{
 private const val DividerLengthInDegrees = 1.8f
 
 //create extension function to extract the proportions
-fun <E> List<E>.extractProportions(selector: (E) ->Float): List<Float>{
+fun <E> List<E>.extractProportions(selector: (E) -> Float): List<Float>{
     /*So if we have 10 Income items we need to extract them;
     next sum the incomes and calculate the proportion of each Income on the total
     */
