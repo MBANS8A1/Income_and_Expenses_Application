@@ -10,7 +10,7 @@ sealed class IncomeExpenseDestination {
     //path(destination String) I want to navigate to
     abstract val routePath: String
     //name of the particular page
-    abstract val pageTitle: String,
+    abstract val pageTitle: String
 
 }
 
