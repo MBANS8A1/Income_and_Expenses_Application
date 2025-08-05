@@ -19,10 +19,10 @@ class IncomeViewModel @Inject constructor(
     var incomeState by mutableStateOf(IncomeState())
         private set
     init{
-        getAllIncome()
+        getAllIncomes()
     }
 
-    fun getAllIncome() = viewModelScope.launch {
+    fun getAllIncomes() = viewModelScope.launch {
         repository.income.collectLatest {
             incomeState.copy(
                 incomes = it
