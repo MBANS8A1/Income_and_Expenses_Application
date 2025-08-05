@@ -7,6 +7,9 @@ import com.example.income_and_expenses_application.presentation.components.Incom
 import com.example.income_and_expenses_application.presentation.components.TransactionStatement
 import com.example.income_and_expenses_application.util.Util
 import com.example.income_and_expenses_application.util.getColour
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun IncomeScreen(
@@ -32,7 +35,16 @@ fun IncomeScreen(
     ){
         //row composable scope
         IncomeRow(
-
+                name = it.title,
+                description = "Receive ${formatDetailDate(it.date)}",
+                amount= it.incomeAmount.toFloat(),
+                colour = getColour(it.incomeAmount.toFloat(),
+                    Util.incomeColour
+                )
         )
     }
 }
+
+//A function to format the Date
+fun formatDetailDate(date: Date):String =
+    SimpleDateFormat("dd MM", Locale.getDefault()).format(date)
