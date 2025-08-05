@@ -3,6 +3,10 @@ package com.example.income_and_expenses_application.presentation.income
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.income_and_expenses_application.data.local.models.Income
+import com.example.income_and_expenses_application.presentation.components.IncomeRow
+import com.example.income_and_expenses_application.presentation.components.TransactionStatement
+import com.example.income_and_expenses_application.util.Util
+import com.example.income_and_expenses_application.util.getColour
 
 @Composable
 fun IncomeScreen(
@@ -11,5 +15,24 @@ fun IncomeScreen(
     onIncomeItemClick: (id:Int) -> Unit,
     onIncomeItemDelete: (Int) -> Unit
 ) {
-    
+    TransactionStatement(
+        modifier = modifier,
+        items = incomes,
+        colours = { getColour(it.incomeAmount.toFloat(),
+                    Util.incomeColour
+            ) },
+        amounts = {it.incomeAmount.toFloat()},
+        amountsTotal = incomes.sumOf { it.incomeAmount }.toFloat(),
+        circleLabel = "Receive",
+        onItemSwiped = {
+            onIncomeItemDelete.invoke(it.id)
+        },
+        key = {it.id},  //will increase performance of the composable
+
+    ){
+        //row composable scope
+        IncomeRow(
+
+        )
+    }
 }
