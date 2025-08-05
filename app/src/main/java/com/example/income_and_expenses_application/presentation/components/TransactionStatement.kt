@@ -26,6 +26,7 @@ import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -110,6 +111,23 @@ fun <T> TransactionStatement(
                     return@rememberSwipeToDismissBoxState true
                 }
             )
+
+            LaunchedEffect(isDismissed) {
+                if(isDismissed){
+                    onItemSwiped.invoke(item)
+                }
+            }
+
+            LaunchedEffect(dismissState.progress) {
+                showDismissedBackground = when{
+                    dismissState.progress <0.5f -> {
+                        true
+                    }
+                    else ->{
+                        false
+                    }
+                }
+            }
 
         }
     }
