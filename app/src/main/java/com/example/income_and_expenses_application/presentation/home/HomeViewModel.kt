@@ -33,8 +33,8 @@ class HomeViewModel @Inject constructor(
                                      expenseList: List<Expense>
                 ->
                 homeUiState.copy(
-                    income = incomeList,
-                    expense =expenseList,
+                    incomes = incomeList,
+                    expenses =expenseList,
                     totalExpense = expenseList
                         .sumOf { it.expenseAmount }.toFloat(),
                     totalIncome = incomeList
@@ -58,8 +58,8 @@ class HomeViewModel @Inject constructor(
 }
 
 data class HomeUiState(
-    val income : List<Income> = emptyList(),
-    val expense: List<Expense> = emptyList(),
+    val incomes : List<Income> = emptyList(),
+    val expenses: List<Expense> = emptyList(),
     val totalExpense:Float = 0f,
     val totalIncome:Float = 0f,
 )
