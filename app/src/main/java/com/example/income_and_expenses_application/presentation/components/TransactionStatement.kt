@@ -18,6 +18,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.SwipeToDismissBox
@@ -116,7 +119,7 @@ fun <T> TransactionStatement(
                 if(isDismissed){
                     onItemSwiped.invoke(item)
                 }
-            }
+            } //1st LaunchedEffect
 
             LaunchedEffect(dismissState.progress) {
                 showDismissedBackground = when{
@@ -127,8 +130,37 @@ fun <T> TransactionStatement(
                         false
                     }
                 }
-            }
+            } //2nd LaunchedEffects
 
+
+            SwipeToDismissBox(
+                state = dismissState,
+                backgroundContent = {
+                    AnimatedVisibility(showDismissedBackground) {
+                        Surface(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.CenterVertically)
+                                .height(68.dp),
+                            color = MaterialTheme.colorScheme.error
+                        ){
+                            Box(
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Delete,
+                                    contentDescription = null
+                                )
+                            } //Box
+                        }//Surface
+                    }//AnimatedVisibility
+                }, //backgroundContent
+                content = {
+                    rows(item)
+                },
+                enableDismissFromStartToEnd = true,
+                enableDismissFromEndToStart = false
+            )//SwipeToDismissBox
         }
     }
 }
