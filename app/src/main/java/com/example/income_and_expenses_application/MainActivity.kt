@@ -30,17 +30,7 @@ class MainActivity : ComponentActivity() {
                 Surface(modifier = Modifier.fillMaxSize(),
                     color= MaterialTheme.colorScheme.background
                 ){
-                    HomeScreen(
-                        state = homeViewModel.homeUiState,
-                        modifier = Modifier,
-                        onClickSeeAllExpense = {},
-                        onClickSeeAllIncome = {},
-                        onExpenseClick = {},
-                        onIncomeClick = {},
-                        onInsertIncome = homeViewModel::insertIncome,
-                        onInsertExpense = homeViewModel::insertExpense
 
-                    )
                 }
             }
         }
