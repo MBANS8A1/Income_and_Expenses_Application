@@ -10,6 +10,7 @@ import com.example.income_and_expenses_application.presentation.expense.ExpenseS
 import com.example.income_and_expenses_application.presentation.expense.ExpenseViewModel
 import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
+import com.example.income_and_expenses_application.presentation.income.IncomeScreen
 import com.example.income_and_expenses_application.presentation.income.IncomeViewModel
 
 @Composable
@@ -53,6 +54,16 @@ fun IncomeExpenseNavHost(
                 onExpenseItemClick = { expenseId ->
 
                 }
+            )
+        }
+        composable(route = IncomeDestination.routePath){
+            IncomeScreen(
+                modifier = modifier,
+                incomes = incomeViewModel.incomeState.incomes,
+                onIncomeItemDelete = {
+                    incomeViewModel.deleteIncome(it)
+                },
+                onIncomeItemClick = {}
             )
         }
     }
