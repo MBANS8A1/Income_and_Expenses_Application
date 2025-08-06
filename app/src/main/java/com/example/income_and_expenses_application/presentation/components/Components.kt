@@ -35,6 +35,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.income_and_expenses_application.data.local.models.Expense
+import com.example.income_and_expenses_application.data.local.models.Income
 import com.example.income_and_expenses_application.presentation.home.HomeUiState
 import com.example.income_and_expenses_application.util.Util
 import com.example.income_and_expenses_application.util.formatAmount
@@ -123,13 +125,13 @@ fun ExpenseCard(
         title = "Expense",
         amount = account.totalExpense,
         onClickSeeAll = onClickSeeAll,
-        data = account.expense,
+        data = account.expenses,
         values = {it.expenseAmount.toFloat()},
         colours = { getColour(
             it.expenseAmount.toFloat(),
             Util.expenseColour)
                   }
-    ){ expense ->
+    ){ expense:Expense ->
         ExpenseRow(
             name = expense.title,
             description = expense.description,
@@ -156,13 +158,13 @@ fun IncomeCard(
         title = "Income",
         amount = account.totalIncome,
         onClickSeeAll = onClickSeeAll,
-        data = account.income,
+        data = account.incomes,
         values = {it.incomeAmount.toFloat()},
         colours = { getColour(
             it.incomeAmount.toFloat(),
             Util.incomeColour)
         }
-    ){ income ->
+    ){ income: Income ->
         IncomeRow(
             name = income.title,
             description = income.description,
@@ -380,7 +382,7 @@ fun <T> OverViewDivider(
 fun PrevIncomeCard() {
     IncomeCard(
         account = HomeUiState(
-            income = incomeList
+            incomes = incomeList
         ),
         onClickSeeAll = {},
         onIncomeClick = {}

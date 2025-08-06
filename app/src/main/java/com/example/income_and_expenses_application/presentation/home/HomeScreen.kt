@@ -130,7 +130,7 @@ fun HomeScreen(
 private fun PrevHome() {
     Income_and_Expenses_ApplicationTheme{
         HomeScreen(
-            state = HomeUiState(income = incomeList, expense = expenseList),
+            state = HomeUiState(incomes = incomeList, expenses = expenseList),
             modifier = Modifier,
             onIncomeClick = {},
             onClickSeeAllIncome = {},
@@ -147,7 +147,7 @@ private fun PrevHome() {
 private fun PrevHomeDark() {
     Income_and_Expenses_ApplicationTheme(darkTheme = true){
         HomeScreen(
-            state = HomeUiState(income = incomeList, expense = expenseList),
+            state = HomeUiState(incomes = incomeList, expenses = expenseList),
             modifier = Modifier,
             onIncomeClick = {},
             onClickSeeAllIncome = {},

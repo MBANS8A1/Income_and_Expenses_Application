@@ -6,9 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.income_and_expenses_application.data.local.models.Expense
 import com.example.income_and_expenses_application.presentation.components.ExpenseRow
-import com.example.income_and_expenses_application.presentation.components.IncomeRow
 import com.example.income_and_expenses_application.presentation.components.TransactionStatement
-import com.example.income_and_expenses_application.presentation.income.IncomeScreen
 import com.example.income_and_expenses_application.util.Util
 import com.example.income_and_expenses_application.util.expenseList
 import com.example.income_and_expenses_application.util.getColour

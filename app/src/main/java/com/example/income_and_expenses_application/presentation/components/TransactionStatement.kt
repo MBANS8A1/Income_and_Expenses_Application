@@ -1,6 +1,7 @@
 package com.example.income_and_expenses_application.presentation.components
 
-import android.graphics.Color
+//import android.graphics.Color
+import androidx.compose.ui.graphics.Color
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
@@ -8,7 +9,6 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.rememberTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,7 +24,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.SwipeToDismissBox
-import androidx.compose.material3.SwipeToDismissBoxState
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
@@ -47,7 +46,7 @@ import com.example.income_and_expenses_application.util.formatAmount
 fun <T> TransactionStatement(
     modifier: Modifier = Modifier,
     items: List<T>,
-    colours: (T) -> androidx.compose.ui.graphics.Color,
+    colours: (T) -> Color,
     amounts: (T) -> Float,
     amountsTotal: Float,
     circleLabel: String,
@@ -168,9 +167,8 @@ fun <T> TransactionStatement(
 @Composable
 fun AnimateCircle(
     proportions: List<Float>,
-    colours: List<androidx.compose.ui.graphics.Color>,
+    colours: List<Color>,
     modifier: Modifier = Modifier
-
 ) {
 
     val currentState = remember{

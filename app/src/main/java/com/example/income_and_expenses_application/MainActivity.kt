@@ -13,9 +13,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.rememberNavController
+import com.example.income_and_expenses_application.presentation.expense.ExpenseViewModel
 import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
+import com.example.income_and_expenses_application.presentation.income.IncomeViewModel
+import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseNavHost
 import com.example.income_and_expenses_application.ui.theme.Income_and_Expenses_ApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,11 +31,20 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val homeViewModel: HomeViewModel = viewModel()
+            val expenseViewModel: ExpenseViewModel = viewModel()
+            val incomeViewModel: IncomeViewModel = viewModel()
+            val navHostController = rememberNavController()
             Income_and_Expenses_ApplicationTheme {
                 Surface(modifier = Modifier.fillMaxSize(),
                     color= MaterialTheme.colorScheme.background
                 ){
-
+                    IncomeExpenseNavHost(
+                        modifier = Modifier.padding(16.dp),
+                        navHostController = navHostController,
+                        homeViewModel = homeViewModel,
+                        incomeViewModel = incomeViewModel,
+                        expenseViewModel = expenseViewModel
+                    )
                 }
             }
         }

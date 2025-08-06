@@ -47,6 +47,7 @@ fun IncomeExpenseNavHost(
         }
         composable(route = ExpenseDestination.routePath){
             ExpenseScreen(
+                modifier = modifier,
                 expenses = expenseViewModel.expenseState.expenses,
                 onExpenseItemDelete = {
                     expenseViewModel.deleteExpense(it)
