@@ -28,8 +28,14 @@ fun IncomeExpenseNavHost(
             HomeScreen(
                 state = homeViewModel.homeUiState,
                 modifier = modifier,
-                onClickSeeAllExpense = {},
-                onClickSeeAllIncome = {},
+                onClickSeeAllExpense = {
+                    navHostController
+                        .navigateToSingleTop(route = ExpenseDestination.routePath)
+                },
+                onClickSeeAllIncome = {
+                    navHostController
+                        .navigateToSingleTop(route = IncomeDestination.routePath)
+                },
                 onExpenseClick = {},
                 onIncomeClick = {},
                 onInsertIncome = homeViewModel::insertIncome,
