@@ -2,6 +2,7 @@ package com.example.income_and_expenses_application.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -37,4 +38,19 @@ fun IncomeExpenseNavHost(
             )
         }
     }
+}
+
+/* From the HomeScreen I want to navigate to different destinations but without the backStack
+ containing multiple entries, so the user is not distracted when he/she pushes the back button.
+ Extension function below should help with fixing this issue.
+ */
+
+fun NavHostController.navigateToSingleTop(route:String){
+     navigate(route){
+         popUpTo(graph.findStartDestination().id){
+             saveState = true
+         }
+         launchSingleTop = true
+         restoreState = true
+     }
 }
