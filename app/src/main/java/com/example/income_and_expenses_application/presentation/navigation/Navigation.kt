@@ -6,6 +6,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.income_and_expenses_application.presentation.expense.ExpenseScreen
 import com.example.income_and_expenses_application.presentation.expense.ExpenseViewModel
 import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
@@ -41,6 +42,17 @@ fun IncomeExpenseNavHost(
                 onInsertIncome = homeViewModel::insertIncome,
                 onInsertExpense = homeViewModel::insertExpense
 
+            )
+        }
+        composable(route = ExpenseDestination.routePath){
+            ExpenseScreen(
+                expenses = expenseViewModel.expenseState.expenses,
+                onExpenseItemDelete = {
+                    expenseViewModel.deleteExpense(it)
+                },
+                onExpenseItemClick = { expenseId ->
+
+                }
             )
         }
     }
