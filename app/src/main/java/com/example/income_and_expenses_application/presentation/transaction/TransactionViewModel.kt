@@ -16,12 +16,63 @@ class TransactionViewModel @Inject constructor(
     //assisted injection of transaction id at runtime
    @Assisted private val transactionId: Int,
    @Assisted private val transactionType:String
-):ViewModel() {
+):ViewModel(),TransactionCallBack {
     /*Now create a factory and help the the ViewModel to be constructed so that Dagger-Hilt
       recognises the variables and does not complain it cannot create them at compile time.
       Variables are needed at runtime. id is not know when an application is open, but it will
       be when an item is clicked. I need to create a ViewModel factory that can be used.
     */
+    override fun onTitleChange(newValue: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onAmountChange(newValue: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDescriptionChange(newValue: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onTransactionTypeChange(newValue: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDateChange(newValue: Long?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onScreenTypeChange(newValue: IncomeExpenseDestination) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onOpenDialog(newValue: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addIncome() {
+        TODO("Not yet implemented")
+    }
+
+    override fun addExpense() {
+        TODO("Not yet implemented")
+    }
+
+    override fun getIncome(id: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getExpense(id: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateIncome() {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateExpense() {
+        TODO("Not yet implemented")
+    }
 }
 
 //class is going to help keep track of the transaction state
