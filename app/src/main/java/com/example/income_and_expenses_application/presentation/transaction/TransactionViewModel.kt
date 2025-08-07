@@ -3,14 +3,15 @@ package com.example.income_and_expenses_application.presentation.transaction
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.income_and_expenses_application.data.repository.Repository
+import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import javax.inject.Inject
 
 class TransactionViewModel @Inject constructor(
     private val repository: Repository,
     //assisted injection of transaction id at runtime
-    private val transactionId: Int,
-    private val transactionType:String
+   @Assisted private val transactionId: Int,
+   @Assisted private val transactionType:String
 ):ViewModel() {
     /*Now create a factory and help the the ViewModel to be constructed so that Dagger-Hilt
       recognises the variables and does not complain it cannot create them at compile time.
