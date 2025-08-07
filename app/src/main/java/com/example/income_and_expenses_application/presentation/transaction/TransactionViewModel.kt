@@ -1,11 +1,17 @@
 package com.example.income_and_expenses_application.presentation.transaction
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.income_and_expenses_application.data.local.models.Expense
+import com.example.income_and_expenses_application.data.local.models.Income
 import com.example.income_and_expenses_application.data.repository.Repository
 import com.example.income_and_expenses_application.presentation.navigation.IncomeDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
 import com.example.income_and_expenses_application.util.Category
+import com.example.income_and_expenses_application.util.formatDate
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import java.util.Date
@@ -17,6 +23,36 @@ class TransactionViewModel @Inject constructor(
    @Assisted private val transactionId: Int,
    @Assisted private val transactionType:String
 ):ViewModel(),TransactionCallBack {
+    var state by mutableStateOf(
+        TransactionState()
+    ) //state observable for TransactionState
+      private set
+
+    //get Income
+    val income:Income
+        get() = state.run { //TransactionState reference (the context object)
+            Income(
+                title = title,
+                description = description,
+                incomeAmount = amount.toDouble(),
+                entryDate = formatDate(date),
+                date = date,
+                id = id
+            )//receiver
+        }
+    val expense: Expense
+        get() = state.run{//TransactionState reference (the context object)
+            Expense(
+                title = title,
+                description = description,
+                expenseAmount = amount.toDouble(),
+                entryDate = formatDate(date),
+                category = category.title,
+                date =date,
+                id = id
+            )//receiver
+
+        }
     /*Now create a factory and help the the ViewModel to be constructed so that Dagger-Hilt
       recognises the variables and does not complain it cannot create them at compile time.
       Variables are needed at runtime. id is not know when an application is open, but it will
