@@ -3,8 +3,12 @@ package com.example.income_and_expenses_application.presentation.transaction
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.income_and_expenses_application.data.repository.Repository
+import com.example.income_and_expenses_application.presentation.navigation.IncomeDestination
+import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
+import com.example.income_and_expenses_application.util.Category
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
+import java.util.Date
 import javax.inject.Inject
 
 class TransactionViewModel @Inject constructor(
@@ -19,6 +23,23 @@ class TransactionViewModel @Inject constructor(
       be when an item is clicked. I need to create a ViewModel factory that can be used.
     */
 }
+
+//class is going to help keep track of the transaction state
+data class TransactionState(
+    val id:Int  = 0,
+    val title:String = "",
+    val amount:String= "",
+    val category: Category = Category.CLOTHING,
+    val date: Date = Date(),
+    //a transaction can be an Income or Expense (I want to vary between them in the edit screen)
+    val description:String = "",
+    val transactionScreen: IncomeExpenseDestination = IncomeDestination,
+    //I will be tracking the date
+    val openDialog: Boolean = true,
+    val isUpdatingTransaction:Boolean = false
+
+
+)
 
 
 class TransactionViewModelFactory(

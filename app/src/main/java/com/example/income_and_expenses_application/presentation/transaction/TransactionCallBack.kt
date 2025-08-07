@@ -1,0 +1,4 @@
+package com.example.income_and_expenses_application.presentation.transaction
+
+interface TransactionCallBack {
+}
