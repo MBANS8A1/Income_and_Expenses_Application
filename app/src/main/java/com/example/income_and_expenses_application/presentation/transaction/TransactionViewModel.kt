@@ -3,6 +3,7 @@ package com.example.income_and_expenses_application.presentation.transaction
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.income_and_expenses_application.data.repository.Repository
+import dagger.assisted.AssistedFactory
 import javax.inject.Inject
 
 class TransactionViewModel @Inject constructor(
@@ -20,10 +21,21 @@ class TransactionViewModel @Inject constructor(
 
 
 class TransactionViewModelFactory(
+    private val assistedFactory: TransactionAssistedFactory,
     private val id:Int,
     private val transactionType: String?
 ):ViewModelProvider.Factory{
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return super.create(modelClass)
+        /*return an assisted injection factory; provide annotation so Dagger-Hilt knows to
+        use this factory when I pass in an id and/or transactionType
+        */
+        return assistedFactory.create(id,transactionType) as T
     }
+}
+
+@AssistedFactory
+interface TransactionAssistedFactory{
+    //create function returns a ViewModel
+    fun create(id:Int,transactionType: String?):TransactionViewModel
 }
