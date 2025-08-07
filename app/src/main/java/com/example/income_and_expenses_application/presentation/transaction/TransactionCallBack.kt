@@ -9,7 +9,7 @@ interface TransactionCallBack {
     fun onTransactionTypeChange(newValue: String)
     fun onDateChange(newValue:Long?)
     fun onScreenTypeChange(newValue:IncomeExpenseDestination)
-    fun onOpenDialog(newValue:String)
+    fun onOpenDialog(newValue:Boolean)
     fun addIncome()
     fun addExpense()
     fun getIncome(id:Int)
