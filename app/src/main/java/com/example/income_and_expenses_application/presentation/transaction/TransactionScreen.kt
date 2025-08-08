@@ -1,10 +1,15 @@
 package com.example.income_and_expenses_application.presentation.transaction
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
@@ -15,6 +20,7 @@ import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.InputChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -29,8 +35,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.example.income_and_expenses_application.R
+import com.example.income_and_expenses_application.util.Category
 import com.example.income_and_expenses_application.util.formatDate
 import java.util.Date
 
@@ -65,8 +74,30 @@ fun TransactionScreen(
             labelText = "Transaction Description"
         )
         Spacer(modifier = Modifier.size(12.dp))
-        //want to shop input points where the user can choose the category of expense
-
+        //want to shop input points/chips where the user can choose the category of expense
+        AnimatedVisibility(isExpenseTransaction){
+            //AnimatedVisibility will track compose tree of the particular animation
+            LazyRow {
+                items(Category.values()){ category ->
+                    InputChip(
+                        selected = category == state.category,
+                        onClick = {
+                            transactionCallBack.onCategoryChange(category)
+                        },
+                        label = {Text(text= category.title)},
+                        modifier = Modifier.padding(8.dp),
+                        trailingIcon = {
+                            Icon(
+                                painter = painterResource(id = category.iconRes),
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
+                    )
+                }
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+        }
 
     }
 }

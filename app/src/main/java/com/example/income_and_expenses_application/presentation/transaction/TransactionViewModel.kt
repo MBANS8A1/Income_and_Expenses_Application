@@ -109,6 +109,12 @@ class TransactionViewModel @Inject constructor(
         )
     }
 
+    override fun onCategoryChange(newValue: Category) {
+        state = state.copy(
+            category = newValue
+        )
+    }
+
     override fun addIncome() {
         viewModelScope.launch {
             repository.insertIncome(income)
