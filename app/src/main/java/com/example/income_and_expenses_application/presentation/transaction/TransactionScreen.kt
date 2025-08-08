@@ -44,7 +44,12 @@ import com.example.income_and_expenses_application.util.formatDate
 import java.util.Date
 
 @Composable
-fun TransactionScreen(
+private fun TransactionScreen(){ //going to be stateless
+
+}
+
+@Composable
+fun TransactionDetails(
     state: TransactionState,
     transactionCallBack: TransactionCallBack,
     isExpenseTransaction: Boolean,
