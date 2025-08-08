@@ -59,6 +59,14 @@ fun TransactionScreen(
             date = state.date,
             onDateChange = transactionCallBack::onDateChange
         )
+        TransactionTextField(
+            value = state.description,
+            onValueChange = transactionCallBack::onDescriptionChange,
+            labelText = "Transaction Description"
+        )
+        Spacer(modifier = Modifier.size(12.dp))
+        //want to shop input points where the user can choose the category of expense
+
 
     }
 }
