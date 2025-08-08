@@ -1,6 +1,8 @@
 package com.example.income_and_expenses_application.presentation.transaction
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
@@ -39,13 +42,72 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.income_and_expenses_application.R
+import com.example.income_and_expenses_application.presentation.navigation.ExpenseDestination
+import com.example.income_and_expenses_application.presentation.navigation.IncomeDestination
+import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
 import com.example.income_and_expenses_application.util.Category
 import com.example.income_and_expenses_application.util.formatDate
 import java.util.Date
 
 @Composable
-private fun TransactionScreen(){ //going to be stateless
+private fun TransactionScreen(
+    modifier: Modifier,
+    state:TransactionState,
+    transactionCallBack: TransactionCallBack,
+    navigateUp: () -> Unit
+){ //going to be stateless
+   /*When the user opens up the keyboard for typing, I want to collapse the other data
+     But I want the user to be able to type any kind of data even if the keyboard is opened.
+    */
 
+    val scrollState =  rememberScrollState()
+    val transactionScreenList = listOf(IncomeDestination,ExpenseDestination)
+    val isExpenseTransaction = state.transactionScreen == ExpenseDestination
+    val icon = when{
+        isExpenseTransaction -> R.drawable.ic_expense_dollar
+        else -> R.drawable.ic_income_dollar
+    }
+    Column(
+        modifier = Modifier
+            .scrollable(
+                state = scrollState,
+                orientation = Orientation.Vertical
+            )
+    ) {
+        //create the transaction title
+    }
+}
+
+@Composable
+fun TransactionTitle(
+    icon:Int,
+    state:TransactionState,
+    transactionCallBack: TransactionCallBack,
+    transactionScreenList: List<IncomeExpenseDestination>
+
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            painter = painterResource(
+                id=icon
+                ),
+            contentDescription = null
+        )
+        Spacer(modifier = Modifier.size(6.dp))
+        Text(
+            text = state.transactionScreen.pageTitle
+        )
+        Spacer(modifier = Modifier.size(6.dp))
+        IconButton(onClick = {transactionCallBack.onOpenDialog(!state.openDialog)}) {
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowDown,
+                contentDescription = null
+            )
+        }
+
+    }
 }
 
 @Composable
