@@ -12,6 +12,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -26,7 +27,15 @@ fun TransactionScreen(
             onValueChange = transactionCallBack::onTitleChange,
             labelText = "Transaction Title"
         )
-        Spacer(modifier = Modifier.Companion.size(12.dp))
+        Spacer(modifier = Modifier.size(12.dp))
+        TransactionTextField(
+            value = state.amount,
+            onValueChange = transactionCallBack::onAmountChange,
+            labelText = "Amount",
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
+        Spacer(modifier = Modifier.size(12.dp))
+
     }
 }
 
