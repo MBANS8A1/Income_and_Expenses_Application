@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Button
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -52,7 +54,12 @@ fun TransactionScreen(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         Spacer(modifier = Modifier.size(12.dp))
-        //Add the date picker
+        //Add the date picker via external composable
+        IncExpDate(
+            date = state.date,
+            onDateChange = transactionCallBack::onDateChange
+        )
+
     }
 }
 
@@ -109,6 +116,16 @@ private fun IncExpDate(
             )
         }
         //need to add an icon to be able to convert openDateDialog back to to true
+        IconButton(
+            onClick = {
+                openDateDialog = true
+            }
+        ){
+            Icon(
+                imageVector = Icons.Default.KeyboardArrowDown,
+                contentDescription = null
+            )
+        }
     }
 }
 
