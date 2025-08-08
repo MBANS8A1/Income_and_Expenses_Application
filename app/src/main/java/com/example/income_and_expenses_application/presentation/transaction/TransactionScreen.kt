@@ -1,6 +1,7 @@
 package com.example.income_and_expenses_application.presentation.transaction
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.InputChip
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -41,6 +43,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Popup
 import com.example.income_and_expenses_application.R
 import com.example.income_and_expenses_application.presentation.navigation.ExpenseDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeDestination
@@ -68,13 +71,28 @@ private fun TransactionScreen(
         else -> R.drawable.ic_income_dollar
     }
     Column(
-        modifier = Modifier
+        modifier
             .scrollable(
                 state = scrollState,
                 orientation = Orientation.Vertical
             )
     ) {
         //create the transaction title
+        TransactionTitle(
+            icon =icon,
+            state = state,
+            transactionCallBack =transactionCallBack,
+            transactionScreenList = transactionScreenList
+        )
+        Spacer(modifier = Modifier.size(12.dp))
+        TransactionDetails(
+            state = state,
+            transactionCallBack = transactionCallBack,
+            isExpenseTransaction = isExpenseTransaction
+        )
+        Spacer(modifier = Modifier.size(12.dp))
+
+
     }
 }
 
@@ -105,6 +123,32 @@ fun TransactionTitle(
                 imageVector = Icons.Default.KeyboardArrowDown,
                 contentDescription = null
             )
+        }
+        if(!state.openDialog){
+            Popup(
+                onDismissRequest = {
+                    transactionCallBack.onOpenDialog(!state.openDialog)
+                }
+            ){
+                Surface(
+                    modifier = Modifier.padding(16.dp)
+                ){
+                    Column{
+                        transactionScreenList.forEach{
+                            Text(
+                                text = it.pageTitle,
+                                modifier = Modifier.
+                                padding(8.dp)
+                                    .clickable {
+                                        transactionCallBack.onScreenTypeChange(it)
+                                        transactionCallBack.onOpenDialog(!state.openDialog)
+                                    }
+                            )
+                        }
+                    }
+                }
+            }
+
         }
 
     }
