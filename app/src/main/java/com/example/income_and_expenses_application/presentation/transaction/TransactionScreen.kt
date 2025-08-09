@@ -91,8 +91,52 @@ private fun TransactionScreen(
             isExpenseTransaction = isExpenseTransaction
         )
         Spacer(modifier = Modifier.size(12.dp))
+        TransactionButton(
+            state = state,
+            transactionCallBack = transactionCallBack,
+            navigateUp = navigateUp
+            )
+    }
+}
 
+@Composable
+fun TransactionButton(
+    state:TransactionState,
+    transactionCallBack: TransactionCallBack,
+    navigateUp: () -> Unit
+) {
+    //When the transaction button is clicked the user can navigate back
+    val buttonTitle = if(state.isUpdatingTransaction) "Update Transaction"
+                else "Add Transaction"
 
+    Button(
+        onClick = {
+            //check if I am updating or adding
+            when (state.isUpdatingTransaction) {
+                true -> {
+                    //check if transaction item is an Income or Expense
+                    if (state.transactionScreen == IncomeDestination) {
+                        transactionCallBack.updateIncome()
+                    } else {
+                        transactionCallBack.updateExpense()
+                    }
+                }
+
+                false -> {
+                    if (state.transactionScreen == IncomeDestination) {
+                        transactionCallBack.addIncome()
+                    } else {
+                        transactionCallBack.addExpense()
+
+                    }
+                }
+            }
+            navigateUp.invoke()
+
+        }
+        //whether user is adding or updating a transaction item go back to their default screen
+    ) {
+        Text(text = buttonTitle)
     }
 }
 
@@ -137,8 +181,8 @@ fun TransactionTitle(
                         transactionScreenList.forEach{
                             Text(
                                 text = it.pageTitle,
-                                modifier = Modifier.
-                                padding(8.dp)
+                                modifier = Modifier
+                                    .padding(8.dp)
                                     .clickable {
                                         transactionCallBack.onScreenTypeChange(it)
                                         transactionCallBack.onOpenDialog(!state.openDialog)
