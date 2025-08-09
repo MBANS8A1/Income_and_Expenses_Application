@@ -3,7 +3,7 @@ package com.example.income_and_expenses_application.presentation.transaction
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
 import com.example.income_and_expenses_application.util.Category
 
-class MockTransactionCallback: TransactionCallBack {
+class MockTransactionCallback(override val areFieldsNotEmpty: Boolean = false) : TransactionCallBack {
     override fun onTitleChange(newValue: String) {
         TODO("Not yet implemented")
     }

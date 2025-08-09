@@ -59,6 +59,10 @@ class TransactionViewModel @AssistedInject constructor(
             )//receiver
 
         }
+    override val areFieldsNotEmpty: Boolean
+        get() = state.title.isNotEmpty() &&
+                state.amount.isNotEmpty() &&
+                state.description.isNotEmpty()
     /*Now create a factory and help the the ViewModel to be constructed so that Dagger-Hilt
       recognises the variables and does not complain it cannot create them at compile time.
       Variables are needed at runtime. id is not know when an application is open, but it will

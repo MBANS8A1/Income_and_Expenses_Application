@@ -4,6 +4,7 @@ import com.example.income_and_expenses_application.presentation.navigation.Incom
 import com.example.income_and_expenses_application.util.Category
 
 interface TransactionCallBack {
+    val areFieldsNotEmpty: Boolean
     fun onTitleChange(newValue:String)
     fun onAmountChange(newValue:String)
     fun onDescriptionChange(newValue: String)

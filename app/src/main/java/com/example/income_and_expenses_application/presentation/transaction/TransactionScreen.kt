@@ -132,10 +132,12 @@ fun TransactionButton(
                     }
                 }
             }
+            //whether user is adding or updating a transaction item go back to their default screen
             navigateUp.invoke()
-
-        }
-        //whether user is adding or updating a transaction item go back to their default screen
+        },
+        modifier = Modifier.fillMaxWidth(),
+        //Button should be disabled if nothing is typed
+        enabled = transactionCallBack.areFieldsNotEmpty
     ) {
         Text(text = buttonTitle)
     }
