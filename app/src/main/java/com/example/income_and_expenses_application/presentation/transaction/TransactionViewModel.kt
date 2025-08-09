@@ -177,6 +177,29 @@ class TransactionViewModel @AssistedInject constructor(
             repository.updateExpense(expense)
         }
     }
+
+
+    init{
+        if(transactionId != -1){
+            //valid transaction id
+            when(transactionType){
+                IncomeDestination.routePath ->{
+                    //update the state and get the Income
+                    getIncome(id = transactionId)
+                }
+                ExpenseDestination.routePath->{
+                    getExpense(id = transactionId)
+                }
+            }
+            state = state.copy(
+                isUpdatingTransaction = true
+            )
+        }else{
+            state = state.copy(
+                isUpdatingTransaction = false
+            )
+        }
+    }
 }
 
 //class is going to help keep track of the transaction state
