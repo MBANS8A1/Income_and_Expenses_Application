@@ -1,5 +1,7 @@
 package com.example.income_and_expenses_application.presentation.navigation
 
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.example.income_and_expenses_application.R
 
 //want to create destinations for navigating from one place to another
@@ -39,4 +41,26 @@ object ExpenseDestination: IncomeExpenseDestination(){
         get() = "expense"
     override val pageTitle: String
         get() = "Expense"
+}
+
+
+object TransactionDestination:IncomeExpenseDestination(){
+    override val iconResId: Int
+        get() = R.drawable.add_entry
+    override val routePath: String
+        get() = "transaction"
+    override val pageTitle: String
+        get() = "Add Transaction"
+
+    const val transactionTypeArg = "Type"
+    const val idTypeArg = "id"
+    val arguments = listOf(
+        navArgument(transactionTypeArg){
+           type =  NavType.StringType
+        },
+        navArgument(idTypeArg){
+            type =  NavType.IntType
+            defaultValue = -1
+        }
+        )
 }
