@@ -17,12 +17,13 @@ import com.example.income_and_expenses_application.util.Category
 import com.example.income_and_expenses_application.util.formatDate
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 
-class TransactionViewModel @Inject constructor(
+class TransactionViewModel @AssistedInject constructor(
     private val repository: Repository,
     //assisted injection of transaction id at runtime
    @Assisted private val transactionId: Int,

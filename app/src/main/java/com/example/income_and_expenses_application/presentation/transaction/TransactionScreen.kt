@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import com.example.income_and_expenses_application.R
@@ -342,5 +343,16 @@ private fun TransactionTextField(
             unfocusedIndicatorColor = Color.Transparent
         ),
         shape = MaterialTheme.shapes.extraLarge //will create the circular-edged pill shape
+    )
+}
+
+@Preview(showSystemUi = true)
+@Composable
+private fun PrevTransaction() {
+    TransactionScreen(
+        state = TransactionState(),
+        transactionCallBack = MockTransactionCallback(),
+        modifier = Modifier,
+        navigateUp = {}
     )
 }
