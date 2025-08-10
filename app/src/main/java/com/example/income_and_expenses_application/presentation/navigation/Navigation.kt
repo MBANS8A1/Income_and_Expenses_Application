@@ -12,11 +12,14 @@ import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
 import com.example.income_and_expenses_application.presentation.income.IncomeScreen
 import com.example.income_and_expenses_application.presentation.income.IncomeViewModel
+import com.example.income_and_expenses_application.presentation.transaction.TransactionAssistedFactory
+import com.example.income_and_expenses_application.presentation.transaction.TransactionScreen
 
 @Composable
 fun IncomeExpenseNavHost(
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
+    assistedFactory: TransactionAssistedFactory,
     homeViewModel: HomeViewModel,
     incomeViewModel: IncomeViewModel,
     expenseViewModel: ExpenseViewModel,
@@ -72,7 +75,14 @@ fun IncomeExpenseNavHost(
         ) {navBackStackEntry ->
             val transType = navBackStackEntry.arguments?.getString(TransactionDestination.transactionTypeArg)
             val transId = navBackStackEntry.arguments?.getInt(TransactionDestination.idTypeArg) ?: -1
-
+            TransactionScreen(
+                modifier = modifier,
+                transactionId = transId,
+                transactionType = transType!!,
+                assistedFactory = assistedFactory
+            ){ //navigateUp
+                navHostController.navigateUp()
+            }
 
         }
     }
