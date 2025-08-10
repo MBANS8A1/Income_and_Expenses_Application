@@ -67,6 +67,14 @@ fun IncomeExpenseNavHost(
                 onIncomeItemClick = {}
             )
         }
+        composable(
+            route = TransactionDestination.routeWithArgs
+        ) {navBackStackEntry ->
+            val transType = navBackStackEntry.arguments?.getString(TransactionDestination.transactionTypeArg)
+            val transId = navBackStackEntry.arguments?.getInt(TransactionDestination.idTypeArg) ?: -1
+
+
+        }
     }
 }
 

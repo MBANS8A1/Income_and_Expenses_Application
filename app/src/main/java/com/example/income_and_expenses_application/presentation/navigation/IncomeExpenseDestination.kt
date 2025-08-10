@@ -63,4 +63,6 @@ object TransactionDestination:IncomeExpenseDestination(){
             defaultValue = -1
         }
         )
+    val routeWithArgs =
+        "$routePath?$transactionTypeArg={$transactionTypeArg}&$idTypeArg={$idTypeArg}"
 }
