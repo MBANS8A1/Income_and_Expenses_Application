@@ -45,6 +45,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.income_and_expenses_application.R
 import com.example.income_and_expenses_application.presentation.navigation.ExpenseDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeDestination
@@ -52,6 +53,32 @@ import com.example.income_and_expenses_application.presentation.navigation.Incom
 import com.example.income_and_expenses_application.util.Category
 import com.example.income_and_expenses_application.util.formatDate
 import java.util.Date
+
+@Composable
+fun TransactionScreen(
+    modifier: Modifier,
+    transactionId: Int,
+    transactionType:String,
+    assistedFactory: TransactionAssistedFactory,
+    navigateUp: () -> Unit
+){
+    //get reference for the ViewModel
+    val viewModel = viewModel(
+        modelClass = TransactionViewModel::class.java,
+        //pass in implementation of the factory
+        factory = TransactionViewModelFactory(
+            id = transactionId,
+            transactionType = transactionType,
+            assistedFactory = assistedFactory
+        )//factory
+    )
+    TransactionScreen(
+        modifier =  modifier,
+        state = viewModel.state,
+        transactionCallBack = viewModel, //viewModel implements the TransactionCallBack
+        navigateUp = navigateUp
+    )
+}
 
 @Composable
 private fun TransactionScreen(
@@ -101,7 +128,7 @@ private fun TransactionScreen(
 }
 
 @Composable
-fun TransactionButton(
+private fun TransactionButton(
     state:TransactionState,
     transactionCallBack: TransactionCallBack,
     navigateUp: () -> Unit
