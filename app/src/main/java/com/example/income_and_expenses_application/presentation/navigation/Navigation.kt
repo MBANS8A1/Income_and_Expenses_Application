@@ -41,8 +41,18 @@ fun IncomeExpenseNavHost(
                     navHostController
                         .navigateToSingleTop(route = IncomeDestination.routePath)
                 },
-                onExpenseClick = {},
-                onIncomeClick = {},
+                onExpenseClick = {
+                    navHostController.navigateToTransactionScreen(
+                        id = it,
+                        transType = ExpenseDestination.routePath
+                    )
+                },
+                onIncomeClick = {
+                    navHostController.navigateToTransactionScreen(
+                        id = it,
+                        transType = IncomeDestination.routePath
+                    )
+                },
                 onInsertIncome = homeViewModel::insertIncome,
                 onInsertExpense = homeViewModel::insertExpense
 
