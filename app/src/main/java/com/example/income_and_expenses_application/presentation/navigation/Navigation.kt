@@ -66,7 +66,10 @@ fun IncomeExpenseNavHost(
                     expenseViewModel.deleteExpense(it)
                 },
                 onExpenseItemClick = { expenseId ->
-
+                    navHostController.navigateToTransactionScreen(
+                        id = expenseId,
+                        transType = ExpenseDestination.routePath
+                    )
                 }
             )
         }
@@ -77,7 +80,12 @@ fun IncomeExpenseNavHost(
                 onIncomeItemDelete = {
                     incomeViewModel.deleteIncome(it)
                 },
-                onIncomeItemClick = {}
+                onIncomeItemClick = {
+                    navHostController.navigateToTransactionScreen(
+                        id = it,
+                        transType = IncomeDestination.routePath
+                    )
+                }
             )
         }
         composable(
