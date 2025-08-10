@@ -88,6 +88,8 @@ fun IncomeExpenseNavHost(
     }
 }
 
+
+
 /* From the HomeScreen I want to navigate to different destinations but without the backStack
  containing multiple entries, so the user is not distracted when he/she pushes the back button.
  Extension function below should help with fixing this issue.
@@ -101,4 +103,19 @@ fun NavHostController.navigateToSingleTop(route:String){
          launchSingleTop = true
          restoreState = true
      }
+}
+
+/*Now I need to create a NavigationHost helper function to help in navigating from the Income
+  and Expense screens to the Transaction screen.
+ */
+
+fun NavHostController.navigateToTransactionScreen(
+    id: Int = -1,
+    transType: String  = ""
+
+){
+    //create a route to contain the data I have
+    val route =  "${TransactionDestination.routePath}?${TransactionDestination.transactionTypeArg}=$transType&${TransactionDestination.idTypeArg}=$id"
+    //Now all other routes are popped off the backstack until the user reaches "route"
+    navigateToSingleTop(route)
 }
