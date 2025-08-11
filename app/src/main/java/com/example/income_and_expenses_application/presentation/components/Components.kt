@@ -1,5 +1,8 @@
 package com.example.income_and_expenses_application.presentation.components
 
+import androidx.annotation.DrawableRes
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,34 +17,90 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.income_and_expenses_application.R
 import com.example.income_and_expenses_application.data.local.models.Expense
 import com.example.income_and_expenses_application.data.local.models.Income
 import com.example.income_and_expenses_application.presentation.home.HomeUiState
+import com.example.income_and_expenses_application.presentation.navigation.HomeDestination
 import com.example.income_and_expenses_application.util.Util
 import com.example.income_and_expenses_application.util.formatAmount
 import com.example.income_and_expenses_application.util.getColour
 import com.example.income_and_expenses_application.util.incomeList
+
+
+//For the app bar(top bar)
+//For back-navigation too if I am on the Income/Expense Screen
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun IncomeExpenseAppBar(
+    @DrawableRes icon: Int = R.drawable.ic_switch_off,
+    title:String,
+    onSwitchClick: () -> Unit,
+    onNavigateUp: () -> Unit
+) {
+    TopAppBar(
+        title = {
+          Text(text=title)
+        },
+        navigationIcon = {
+            //check if inside HomeScreen; if not then we don't show the navigation icon
+            AnimatedVisibility(
+                visible = title != HomeDestination.pageTitle
+            ) {
+                IconButton(
+                  onClick = onNavigateUp
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = null
+
+                    )
+                }
+            }
+        },
+        actions = {
+            //have icon at the end of the top bar to change the theme
+            AnimatedContent(targetState = icon) { iconRes ->
+                //AnimateContentScope it:Int
+                IconButton(onClick = onSwitchClick) {
+                    Icon(
+                        painter = painterResource(id=iconRes),
+                        contentDescription = null
+                    )
+                }
+            }
+        }
+    )
+    
+}
 
 @Composable
 fun AccountCard(

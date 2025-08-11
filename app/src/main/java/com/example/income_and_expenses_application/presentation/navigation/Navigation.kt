@@ -89,7 +89,9 @@ fun IncomeExpenseNavHost(
             )
         }
         composable(
-            route = TransactionDestination.routeWithArgs
+            route = TransactionDestination.routeWithArgs,
+            //associate the arguments with the route so application is aware of these arguments
+            arguments = TransactionDestination.arguments
         ) {navBackStackEntry ->
             val transType = navBackStackEntry.arguments?.getString(TransactionDestination.transactionTypeArg)
             val transId = navBackStackEntry.arguments?.getInt(TransactionDestination.idTypeArg) ?: -1
