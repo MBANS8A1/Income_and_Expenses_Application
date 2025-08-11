@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.ChevronRight
@@ -25,6 +26,7 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -110,10 +112,15 @@ fun IncomeExpenseBottomBar(
     allScreens: List<IncomeExpenseDestination>,
     onTabSelected:(IncomeExpenseDestination) -> Unit,
     selectedTab:IncomeExpenseDestination,
-    onFabClick: () -> Unit
+    onFabClick: () -> Unit //floating action button click
 ) {
     BottomAppBar(
-        floatingActionButton = {},
+        floatingActionButton = {
+            IncomeExpenseFab(
+                onFabClick = onFabClick,
+                selectedTab = selectedTab
+            )
+        },
         actions = {
             allScreens.forEach{ screen ->
                 //I want to display the tabs here
@@ -129,6 +136,22 @@ fun IncomeExpenseBottomBar(
         },
     )
     
+}
+
+@Composable
+fun IncomeExpenseFab(
+    onFabClick: () -> Unit,
+    selectedTab:IncomeExpenseDestination,
+
+) {
+    FloatingActionButton(
+        onClick = onFabClick
+    ){
+        Icon(
+            imageVector = Icons.Default.Add,
+            contentDescription = null
+        )
+    }
 }
 
 @Composable
