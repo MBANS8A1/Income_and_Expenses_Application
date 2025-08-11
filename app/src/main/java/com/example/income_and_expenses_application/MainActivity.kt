@@ -21,11 +21,18 @@ import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
 import com.example.income_and_expenses_application.presentation.income.IncomeViewModel
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseNavHost
+import com.example.income_and_expenses_application.presentation.transaction.TransactionAssistedFactory
 import com.example.income_and_expenses_application.ui.theme.Income_and_Expenses_ApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    /*To initialize the assistedFactory variable annotate it with @Inject.
+      At runtime DH will inject this variable
+     */
+    @Inject
+    lateinit var assistedFactory: TransactionAssistedFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -43,7 +50,8 @@ class MainActivity : ComponentActivity() {
                         navHostController = navHostController,
                         homeViewModel = homeViewModel,
                         incomeViewModel = incomeViewModel,
-                        expenseViewModel = expenseViewModel
+                        expenseViewModel = expenseViewModel,
+                        assistedFactory =  assistedFactory
                     )
                 }
             }
