@@ -21,6 +21,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -49,6 +50,7 @@ import com.example.income_and_expenses_application.data.local.models.Expense
 import com.example.income_and_expenses_application.data.local.models.Income
 import com.example.income_and_expenses_application.presentation.home.HomeUiState
 import com.example.income_and_expenses_application.presentation.navigation.HomeDestination
+import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
 import com.example.income_and_expenses_application.util.Util
 import com.example.income_and_expenses_application.util.formatAmount
 import com.example.income_and_expenses_application.util.getColour
@@ -98,6 +100,25 @@ fun IncomeExpenseAppBar(
                 }
             }
         }
+    )
+    
+}
+
+
+@Composable
+fun IncomeExpenseBottomBar(
+    allScreens: List<IncomeExpenseDestination>,
+    onTabSelected:(IncomeExpenseDestination) -> Unit,
+    selectedTab:IncomeExpenseDestination,
+    onFabClick: () -> Unit
+) {
+    BottomAppBar(
+        floatingActionButton = {},
+        actions = {
+            allScreens.forEach{ screen ->
+                //I want to display the tabs here
+            }
+        },
     )
     
 }
