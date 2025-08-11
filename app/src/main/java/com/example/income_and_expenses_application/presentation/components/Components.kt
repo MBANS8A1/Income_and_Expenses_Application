@@ -117,6 +117,14 @@ fun IncomeExpenseBottomBar(
         actions = {
             allScreens.forEach{ screen ->
                 //I want to display the tabs here
+                IncExpRowTab(
+                    text = screen.pageTitle,
+                    icon = screen.iconResId,
+                    onSelected = {
+                        onTabSelected(screen)
+                    },
+                    selected = selectedTab == screen
+                )
             }
         },
     )
