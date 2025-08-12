@@ -12,6 +12,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -61,31 +62,43 @@ class MainActivity : ComponentActivity() {
             //A state to help track the theme
             val systemTheme = isSystemInDarkTheme()
 
-            var currentTheme by remember{
+            var currentTheme by remember {
                 mutableStateOf(
-                    if(systemTheme) Theme.SYSTEM else Theme.LIGHT
+                    if (systemTheme) Theme.SYSTEM else Theme.LIGHT
                 )
             }
-
-            Surface(modifier = Modifier.fillMaxSize(),
-                color= MaterialTheme.colorScheme.background
-            ){
-              Scaffold(
-                  topBar = {
-                    IncomeExpenseAppBar(
-                        onSwitchClick =
-                    )
-                  }
-              ){paddingValues ->
-                  IncomeExpenseNavHost(
-                      modifier = Modifier.padding(paddingValues).padding(16.dp),
-                      navHostController = navHostController,
-                      homeViewModel = homeViewModel,
-                      incomeViewModel = incomeViewModel,
-                      expenseViewModel = expenseViewModel,
-                      assistedFactory =  assistedFactory
-                  )
-              }
+            CompositionLocalProvider(LocalAppTheme provides currentTheme){
+                Income_and_Expenses_ApplicationTheme(
+                    currentTheme == Theme.DARK
+                ) {
+                    //Icons used inside the screens
+                    val icon = when(currentTheme){
+                        Theme.DARK -> R.drawable.ic_switch_on
+                        else -> R.drawable.ic_switch_off
+                    }
+                    //Surface container for the background colour from the colorScheme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        Scaffold(
+                            topBar = {
+                                IncomeExpenseAppBar(
+                                    onSwitchClick =
+                                )
+                            }
+                        ) { paddingValues ->
+                            IncomeExpenseNavHost(
+                                modifier = Modifier.padding(paddingValues).padding(16.dp),
+                                navHostController = navHostController,
+                                homeViewModel = homeViewModel,
+                                incomeViewModel = incomeViewModel,
+                                expenseViewModel = expenseViewModel,
+                                assistedFactory = assistedFactory
+                            )
+                        }
+                    }
+                }
             }
         }
     }
