@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -11,11 +12,17 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.example.income_and_expenses_application.presentation.components.IncomeExpenseAppBar
 import com.example.income_and_expenses_application.presentation.expense.ExpenseViewModel
 import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
@@ -50,19 +57,51 @@ class MainActivity : ComponentActivity() {
             val expenseViewModel: ExpenseViewModel = viewModel()
             val incomeViewModel: IncomeViewModel = viewModel()
             val navHostController = rememberNavController()
+
+            //A state to help track the theme
+            val systemTheme = isSystemInDarkTheme()
+
+            var currentTheme by remember{
+                mutableStateOf(
+                    if(systemTheme) Theme.SYSTEM else Theme.LIGHT
+                )
+            }
+
             Surface(modifier = Modifier.fillMaxSize(),
                 color= MaterialTheme.colorScheme.background
             ){
-                IncomeExpenseNavHost(
-                    modifier = Modifier.padding(16.dp),
-                    navHostController = navHostController,
-                    homeViewModel = homeViewModel,
-                    incomeViewModel = incomeViewModel,
-                    expenseViewModel = expenseViewModel,
-                    assistedFactory =  assistedFactory
-                )
+              Scaffold(
+                  topBar = {
+                    IncomeExpenseAppBar(
+                        onSwitchClick =
+                    )
+                  }
+              ){paddingValues ->
+                  IncomeExpenseNavHost(
+                      modifier = Modifier.padding(paddingValues).padding(16.dp),
+                      navHostController = navHostController,
+                      homeViewModel = homeViewModel,
+                      incomeViewModel = incomeViewModel,
+                      expenseViewModel = expenseViewModel,
+                      assistedFactory =  assistedFactory
+                  )
+              }
             }
         }
+    }
+
+    /*If there is no theme show an error because application should not operate
+     without a theme */
+    private val LocalAppTheme = staticCompositionLocalOf<Theme> {
+        error("No Theme Provided")
+    }
+
+    //For the themes
+    //This will help propagate the type of colours I want to use
+    enum class Theme{
+        SYSTEM,
+        LIGHT,
+        DARK
     }
 }
 
