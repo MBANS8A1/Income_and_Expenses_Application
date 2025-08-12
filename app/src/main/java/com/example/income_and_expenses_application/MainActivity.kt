@@ -37,27 +37,35 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+        }
+    }
+
+    //Going to add another composable, which will help to separate the concerns
+
+    @Composable
+    private fun IncExpApp(){
+        Income_and_Expenses_ApplicationTheme {
             val homeViewModel: HomeViewModel = viewModel()
             val expenseViewModel: ExpenseViewModel = viewModel()
             val incomeViewModel: IncomeViewModel = viewModel()
             val navHostController = rememberNavController()
-            Income_and_Expenses_ApplicationTheme {
-                Surface(modifier = Modifier.fillMaxSize(),
-                    color= MaterialTheme.colorScheme.background
-                ){
-                    IncomeExpenseNavHost(
-                        modifier = Modifier.padding(16.dp),
-                        navHostController = navHostController,
-                        homeViewModel = homeViewModel,
-                        incomeViewModel = incomeViewModel,
-                        expenseViewModel = expenseViewModel,
-                        assistedFactory =  assistedFactory
-                    )
-                }
+            Surface(modifier = Modifier.fillMaxSize(),
+                color= MaterialTheme.colorScheme.background
+            ){
+                IncomeExpenseNavHost(
+                    modifier = Modifier.padding(16.dp),
+                    navHostController = navHostController,
+                    homeViewModel = homeViewModel,
+                    incomeViewModel = incomeViewModel,
+                    expenseViewModel = expenseViewModel,
+                    assistedFactory =  assistedFactory
+                )
             }
         }
     }
 }
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
