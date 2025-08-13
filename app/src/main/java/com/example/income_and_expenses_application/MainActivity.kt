@@ -22,12 +22,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.income_and_expenses_application.presentation.components.IncomeExpenseAppBar
 import com.example.income_and_expenses_application.presentation.expense.ExpenseViewModel
 import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
 import com.example.income_and_expenses_application.presentation.income.IncomeViewModel
+import com.example.income_and_expenses_application.presentation.navigation.ExpenseDestination
+import com.example.income_and_expenses_application.presentation.navigation.HomeDestination
+import com.example.income_and_expenses_application.presentation.navigation.IncomeDestination
+import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseNavHost
 import com.example.income_and_expenses_application.presentation.transaction.TransactionAssistedFactory
 import com.example.income_and_expenses_application.ui.theme.Income_and_Expenses_ApplicationTheme
@@ -41,6 +48,8 @@ class MainActivity : ComponentActivity() {
      */
     @Inject
     lateinit var assistedFactory: TransactionAssistedFactory
+    //variable for all the screens the user navigates to
+    private val allScreens = listOf(IncomeDestination,HomeDestination,ExpenseDestination)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -84,7 +93,14 @@ class MainActivity : ComponentActivity() {
                         Scaffold(
                             topBar = {
                                 IncomeExpenseAppBar(
-                                    onSwitchClick =
+                                    onSwitchClick ={
+                                     currentTheme = when(currentTheme){
+                                            Theme.DARK -> Theme.LIGHT
+                                            else -> Theme.DARK
+                                        }
+                                    },
+                                    icon = icon,
+                                    title =
                                 )
                             }
                         ) { paddingValues ->
@@ -103,6 +119,14 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
+    @Composable
+    private fun rememberCurrentScreen(navController: NavController):IncomeExpenseDestination{
+        //Track the state when moving from one screen to the next
+        //A mutable state of the current back stack entry (observable)
+        val currentBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = currentBackStackEntry?.destination
+    }
     /*If there is no theme show an error because application should not operate
      without a theme */
     private val LocalAppTheme = staticCompositionLocalOf<Theme> {
