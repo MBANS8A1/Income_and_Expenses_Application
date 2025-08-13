@@ -36,6 +36,7 @@ import com.example.income_and_expenses_application.presentation.navigation.HomeD
 import com.example.income_and_expenses_application.presentation.navigation.IncomeDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseNavHost
+import com.example.income_and_expenses_application.presentation.navigation.TransactionDestination
 import com.example.income_and_expenses_application.presentation.transaction.TransactionAssistedFactory
 import com.example.income_and_expenses_application.ui.theme.Income_and_Expenses_ApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +49,8 @@ class MainActivity : ComponentActivity() {
      */
     @Inject
     lateinit var assistedFactory: TransactionAssistedFactory
-    //variable for all the screens the user navigates to
+    //variable for all the screens the user navigates to and use in my bottom navigation bar
+    //Transaction screen destination is going to be via the floating action button
     private val allScreens = listOf(IncomeDestination,HomeDestination,ExpenseDestination)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +82,8 @@ class MainActivity : ComponentActivity() {
                 Income_and_Expenses_ApplicationTheme(
                     currentTheme == Theme.DARK
                 ) {
+                    //Give the current backstack entry and access to the current screen
+                    var currentScreen = rememberCurrentScreen(navHostController)
                     //Icons used inside the screens
                     val icon = when(currentTheme){
                         Theme.DARK -> R.drawable.ic_switch_on
@@ -100,8 +104,15 @@ class MainActivity : ComponentActivity() {
                                         }
                                     },
                                     icon = icon,
-                                    title =
-                                )
+                                    title = currentScreen.pageTitle,
+
+                                ){
+                                    navHostController.navigateUp()
+                                }
+                            },
+
+                            bottomBar = {
+
                             }
                         ) { paddingValues ->
                             IncomeExpenseNavHost(
@@ -126,6 +137,11 @@ class MainActivity : ComponentActivity() {
         //A mutable state of the current back stack entry (observable)
         val currentBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = currentBackStackEntry?.destination
+        //get the current screen
+        //If there is no match the Transaction destination screen will be the default one
+        return allScreens.find {
+             it.routePath == currentDestination?.route
+        } ?:TransactionDestination
     }
     /*If there is no theme show an error because application should not operate
      without a theme */
