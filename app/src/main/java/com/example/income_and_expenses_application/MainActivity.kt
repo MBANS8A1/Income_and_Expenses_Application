@@ -125,8 +125,8 @@ class MainActivity : ComponentActivity() {
                                     //onFabClick
                                     navHostController.navigateToSingleTop(TransactionDestination.routeWithArgs)
                                 }
-                                //Now defining the position of the floating action button
                             },
+                            //Now defining the position of the floating action button
                             floatingActionButtonPosition = FabPosition.End
                         ) { paddingValues ->
                             IncomeExpenseNavHost(
