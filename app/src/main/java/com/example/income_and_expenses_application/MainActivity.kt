@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -27,6 +28,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.income_and_expenses_application.presentation.components.IncomeExpenseAppBar
+import com.example.income_and_expenses_application.presentation.components.IncomeExpenseBottomBar
 import com.example.income_and_expenses_application.presentation.expense.ExpenseViewModel
 import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
@@ -37,6 +39,7 @@ import com.example.income_and_expenses_application.presentation.navigation.Incom
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseNavHost
 import com.example.income_and_expenses_application.presentation.navigation.TransactionDestination
+import com.example.income_and_expenses_application.presentation.navigation.navigateToSingleTop
 import com.example.income_and_expenses_application.presentation.transaction.TransactionAssistedFactory
 import com.example.income_and_expenses_application.ui.theme.Income_and_Expenses_ApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -112,8 +115,19 @@ class MainActivity : ComponentActivity() {
                             },
 
                             bottomBar = {
-
-                            }
+                                IncomeExpenseBottomBar(
+                                    allScreens = allScreens,
+                                    onTabSelected = {
+                                        navHostController.navigateToSingleTop(it.routePath)
+                                    },
+                                    selectedTab = currentScreen
+                                ){
+                                    //onFabClick
+                                    navHostController.navigateToSingleTop(TransactionDestination.routeWithArgs)
+                                }
+                                //Now defining the position of the floating action button
+                            },
+                            floatingActionButtonPosition = FabPosition.End
                         ) { paddingValues ->
                             IncomeExpenseNavHost(
                                 modifier = Modifier.padding(paddingValues).padding(16.dp),
