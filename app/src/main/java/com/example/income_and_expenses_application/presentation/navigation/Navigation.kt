@@ -25,6 +25,8 @@ fun IncomeExpenseNavHost(
     expenseViewModel: ExpenseViewModel,
 
     ) {
+    val incomeState = incomeViewModel.incomeState
+    val expenseState = expenseViewModel.expenseState
     NavHost(
         navController = navHostController,
         startDestination = HomeDestination.routePath
@@ -61,7 +63,7 @@ fun IncomeExpenseNavHost(
         composable(route = ExpenseDestination.routePath){
             ExpenseScreen(
                 modifier = modifier,
-                expenses = expenseViewModel.expenseState.expenses,
+                expenses = expenseState.expenses,
                 onExpenseItemDelete = {
                     expenseViewModel.deleteExpense(it)
                 },
@@ -76,7 +78,7 @@ fun IncomeExpenseNavHost(
         composable(route = IncomeDestination.routePath){
             IncomeScreen(
                 modifier = modifier,
-                incomes = incomeViewModel.incomeState.incomes,
+                incomes = incomeState.incomes,
                 onIncomeItemDelete = {
                     incomeViewModel.deleteIncome(it)
                 },
@@ -93,12 +95,12 @@ fun IncomeExpenseNavHost(
             //associate the arguments with the route so application is aware of these arguments
             arguments = TransactionDestination.arguments
         ) {navBackStackEntry ->
-            val transType = navBackStackEntry.arguments?.getString(TransactionDestination.transactionTypeArg)
-            val transId = navBackStackEntry.arguments?.getInt(TransactionDestination.idTypeArg) ?: -1
+            val transType = navBackStackEntry.arguments?.getString(TransactionDestination.TRANSACTIONTYPEARG) ?: ""
+            val transId = navBackStackEntry.arguments?.getInt(TransactionDestination.IDTYPEARG) ?: -1
             TransactionScreen(
                 modifier = modifier,
                 transactionId = transId,
-                transactionType = transType!!,
+                transactionType = transType,
                 assistedFactory = assistedFactory
             ){ //navigateUp
                 navHostController.navigateUp()
@@ -131,11 +133,11 @@ fun NavHostController.navigateToSingleTop(route:String){
 
 fun NavHostController.navigateToTransactionScreen(
     id: Int = -1,
-    transType: String  = ""
+    transType: String
 
 ){
     //create a route to contain the data I have
-    val route =  "${TransactionDestination.routePath}?${TransactionDestination.transactionTypeArg}=$transType&${TransactionDestination.idTypeArg}=$id"
+    val route =  "${TransactionDestination.routePath}?${TransactionDestination.TRANSACTIONTYPEARG}=$transType&${TransactionDestination.IDTYPEARG}=$id"
     //Now all other routes are popped off the backstack until the user reaches "route"
     navigateToSingleTop(route)
 }

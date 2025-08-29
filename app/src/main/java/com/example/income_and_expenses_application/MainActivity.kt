@@ -7,11 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -20,17 +20,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.income_and_expenses_application.presentation.components.IncomeExpenseAppBar
 import com.example.income_and_expenses_application.presentation.components.IncomeExpenseBottomBar
 import com.example.income_and_expenses_application.presentation.expense.ExpenseViewModel
-import com.example.income_and_expenses_application.presentation.home.HomeScreen
 import com.example.income_and_expenses_application.presentation.home.HomeViewModel
 import com.example.income_and_expenses_application.presentation.income.IncomeViewModel
 import com.example.income_and_expenses_application.presentation.navigation.ExpenseDestination
@@ -66,12 +63,12 @@ class MainActivity : ComponentActivity() {
     //Going to add another composable, which will help to separate the concerns
 
     @Composable
-    private fun IncExpApp(){
+    fun IncExpApp(){
         Income_and_Expenses_ApplicationTheme {
             val homeViewModel: HomeViewModel = viewModel()
             val expenseViewModel: ExpenseViewModel = viewModel()
             val incomeViewModel: IncomeViewModel = viewModel()
-            val navHostController = rememberNavController()
+//            val navHostController = rememberNavController()
 
             //A state to help track the theme
             val systemTheme = isSystemInDarkTheme()
@@ -81,12 +78,13 @@ class MainActivity : ComponentActivity() {
                     if (systemTheme) Theme.SYSTEM else Theme.LIGHT
                 )
             }
-            CompositionLocalProvider(LocalAppTheme provides currentTheme){
+            CompositionLocalProvider(localAppTheme provides currentTheme){
                 Income_and_Expenses_ApplicationTheme(
                     currentTheme == Theme.DARK
                 ) {
                     //Give the current backstack entry and access to the current screen
-                    var currentScreen = rememberCurrentScreen(navHostController)
+                    val navHostController = rememberNavController()
+                    val currentScreen = rememberCurrentScreen(navHostController)
                     //Icons used inside the screens
                     val icon = when(currentTheme){
                         Theme.DARK -> R.drawable.ic_switch_on
@@ -94,7 +92,7 @@ class MainActivity : ComponentActivity() {
                     }
                     //Surface container for the background colour from the colorScheme
                     Surface(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize().safeContentPadding(),
                         color = MaterialTheme.colorScheme.background
                     ) {
                         Scaffold(
@@ -113,7 +111,6 @@ class MainActivity : ComponentActivity() {
                                     navHostController.navigateUp()
                                 }
                             },
-
                             bottomBar = {
                                 IncomeExpenseBottomBar(
                                     allScreens = allScreens,
@@ -130,7 +127,9 @@ class MainActivity : ComponentActivity() {
                             floatingActionButtonPosition = FabPosition.End
                         ) { paddingValues ->
                             IncomeExpenseNavHost(
-                                modifier = Modifier.padding(paddingValues).padding(16.dp),
+                                modifier = Modifier
+                                    .padding(paddingValues)
+                                    .padding(horizontal = 16.dp),
                                 navHostController = navHostController,
                                 homeViewModel = homeViewModel,
                                 incomeViewModel = incomeViewModel,
@@ -159,7 +158,7 @@ class MainActivity : ComponentActivity() {
     }
     /*If there is no theme show an error because application should not operate
      without a theme */
-    private val LocalAppTheme = staticCompositionLocalOf<Theme> {
+    private val localAppTheme = staticCompositionLocalOf<Theme> {
         error("No Theme Provided")
     }
 

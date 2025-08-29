@@ -37,6 +37,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
@@ -122,14 +124,14 @@ fun <T> TransactionStatement(
 
             LaunchedEffect(dismissState.progress) {
                 showDismissedBackground = when{
-                    dismissState.progress <0.5f -> {
+                    dismissState.progress < 0.5f -> {
                         true
                     }
                     else ->{
                         false
                     }
                 }
-            } //2nd LaunchedEffects
+            } //2nd LaunchedEffect
 
 
             SwipeToDismissBox(
@@ -177,7 +179,10 @@ fun AnimateCircle(
     } //transition state defined from START to END
     //gives the current density (stroke converted from dp to pixels)
     val stroke  = with(LocalDensity.current){
-        Stroke(5.dp.toPx())
+        Stroke(width =5.dp.toPx(),
+            cap = StrokeCap.Round,
+            join = StrokeJoin.Round
+        )
     }
     val transition = rememberTransition(transitionState = currentState, label = "Circle/Ring")
     //angle offset for offsetting the cycle
@@ -190,7 +195,7 @@ fun AnimateCircle(
         label = ""
     ){progress ->               //targetValueByState
         if(progress == AnimatedCircleProgress.START){
-            0f
+           0f
         }else{
             360f
         }
@@ -213,7 +218,7 @@ fun AnimateCircle(
     }
     //Now creating a Canvas (with a DrawScope) to draw the arcs
     Canvas(modifier = modifier) { //size is part of the DrawScope
-        val innerRadius = (size.minDimension - stroke.width)/2 //stay within bounding box
+        val innerRadius = (size.minDimension - stroke.width)/2.0f //stay within bounding box
         val halfSize = size/2.0f
         val topLeft = Offset(
             x = halfSize.width - innerRadius,
@@ -248,7 +253,6 @@ private enum class AnimatedCircleProgress{
     START,
     END
 }
-
 //divider length for the different incomes in the circle/arc in degrees
 private const val DividerLengthInDegrees = 1.8f
 
@@ -258,7 +262,10 @@ fun <E> List<E>.extractProportions(selector: (E) -> Float): List<Float>{
     next sum the incomes and calculate the proportion of each Income on the total
     */
     //this refers to the List
-    var total = this.sumOf{selector(it).toDouble()}
+    val total = this.sumOf{selector(it).toDouble()}
     //Now we want to return a list with these particular proportions
     return this.map{(selector(it)/total).toFloat()}
 }
+
+
+

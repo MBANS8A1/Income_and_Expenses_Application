@@ -1,6 +1,5 @@
 package com.example.income_and_expenses_application.presentation.home
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,13 +44,12 @@ fun HomeScreen(
     ) {
         item{
             Column {
-                Row {
-                    val balance = state.totalIncome - state.totalExpense
+                Row{
                     Text("Your total balance:")
                     Spacer(modifier = Modifier.size(4.dp))
                     Text(
                         text = "£" +
-                        formatAmount(balance),
+                        formatAmount(state.totalIncome - state.totalExpense),
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -90,7 +88,8 @@ fun HomeScreen(
         item{
             IncomeCard(
                 account = state,
-                onIncomeClick = onIncomeClick,
+                onIncomeClick ={onIncomeClick.invoke(it)
+                               } ,
                 onClickSeeAll = onClickSeeAllIncome
             )
             Spacer(modifier = Modifier.size(12.dp))
@@ -98,9 +97,10 @@ fun HomeScreen(
         item{
             ExpenseCard(
                 account = state,
-                onExpenseClick = onExpenseClick,
                 onClickSeeAll = onClickSeeAllExpense
-            )
+            ){
+                onExpenseClick.invoke(it)
+            }
             Spacer(modifier = Modifier.size(12.dp))
 
         }
@@ -115,6 +115,7 @@ fun HomeScreen(
                 ) {
                     Text(text = "Insert Income")
                 }
+                Spacer(modifier = Modifier.size(12.dp))
                 ElevatedButton(
                     onClick = onInsertExpense
                 ) {

@@ -19,7 +19,7 @@ fun ExpenseScreen(
     modifier: Modifier = Modifier,
     expenses: List<Expense>,
     onExpenseItemClick: (id:Int) -> Unit,
-    onExpenseItemDelete: (Int) -> Unit
+    onExpenseItemDelete: (id:Int) -> Unit
 ) {
     TransactionStatement(
         modifier = modifier,
@@ -28,27 +28,29 @@ fun ExpenseScreen(
             Util.expenseColour
         ) },
         amounts = {it.expenseAmount.toFloat()},
-        amountsTotal = expenses.sumOf { it.expenseAmount }.toFloat(),
+        amountsTotal = expenses.sumOf{ it.expenseAmount }.toFloat(),
         circleLabel = "Pay",
         onItemSwiped = {
             onExpenseItemDelete.invoke(it.id)
         },
-        key = {it.id},  //will increase performance of the composable
+        key = {it.id}  //will increase performance of the composable
 
-    ){
+    ) { expense ->
         //row composable scope
+        expense.apply{
         ExpenseRow(
-            name = it.title,
-            description = "Receive ${formatDetailDate(it.date)}",
-            amount= it.expenseAmount.toFloat(),
-            colour = getColour(it.expenseAmount.toFloat(),
+            name = expense.title,
+            description = "Receive ${formatDetailDate(expense.date)}",
+            amount = expense.expenseAmount.toFloat(),
+            colour = getColour(
+                expense.expenseAmount.toFloat(),
                 Util.expenseColour
             ),
             modifier = Modifier.clickable {
-                onExpenseItemClick.invoke(it.id)
+                onExpenseItemClick.invoke(expense.id)
             }
-
         )
+     }
     }
 }
 

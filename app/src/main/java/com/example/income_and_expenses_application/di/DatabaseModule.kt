@@ -22,7 +22,9 @@ object DatabaseModule {
             context,
             IncomeExpenseDatabase::class.java,
             "transaction_db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration(true)
+            .build()
     }
 
     @Provides

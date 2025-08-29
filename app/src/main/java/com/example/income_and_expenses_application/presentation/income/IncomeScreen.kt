@@ -28,13 +28,12 @@ fun IncomeScreen(
                     Util.incomeColour
             ) },
         amounts = {it.incomeAmount.toFloat()},
-        amountsTotal = incomes.sumOf { it.incomeAmount }.toFloat(),
+        amountsTotal = incomes.sumOf{ it.incomeAmount }.toFloat(),
         circleLabel = "Receive",
         onItemSwiped = {
             onIncomeItemDelete.invoke(it.id)
         },
-        key = {it.id},  //will increase performance of the composable
-
+        key = {it.id}  //will increase performance of the composable
     ){
         //row composable scope
         IncomeRow(
@@ -44,7 +43,7 @@ fun IncomeScreen(
                 colour = getColour(it.incomeAmount.toFloat(),
                     Util.incomeColour
                 ),
-            modifier = Modifier.clickable {
+                modifier = Modifier.clickable {
                 onIncomeItemClick.invoke(it.id)
             }
 

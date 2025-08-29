@@ -22,7 +22,7 @@ class IncomeViewModel @Inject constructor(
         getAllIncomes()
     }
 
-    fun getAllIncomes() = viewModelScope.launch {
+    private fun getAllIncomes() = viewModelScope.launch {
         repository.income.collectLatest {
             incomeState.copy(
                 incomes = it

@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.income_and_expenses_application.data.local.models.Expense
 import com.example.income_and_expenses_application.data.local.models.Income
 import com.example.income_and_expenses_application.data.repository.Repository
-import com.example.income_and_expenses_application.presentation.expense.ExpenseScreen
 import com.example.income_and_expenses_application.presentation.navigation.ExpenseDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
@@ -21,7 +20,6 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Date
-import javax.inject.Inject
 
 class TransactionViewModel @AssistedInject constructor(
     private val repository: Repository,
@@ -135,7 +133,7 @@ class TransactionViewModel @AssistedInject constructor(
     override fun getIncome(id: Int) {
         viewModelScope.launch{
             repository.getIncomeById(id).collectLatest {
-                state.copy(
+               state = state.copy(
                     id = it.id,
                     title = it.title,
                     description = it.description,
@@ -150,14 +148,14 @@ class TransactionViewModel @AssistedInject constructor(
     override fun getExpense(id: Int) {
         viewModelScope.launch{
             repository.getExpenseById(id).collectLatest {
-                state.copy(
+              state =  state.copy(
                     id = it.id,
                     title = it.title,
                     description = it.description,
                     amount = it.expenseAmount.toString(),
                     transactionScreen = ExpenseDestination,
                     date = it.date,
-                    category = Category.values()
+                    category = Category.entries.toTypedArray()
                         .find{category->
                             category.title == it.category
                         } ?: Category.CLOTHING
@@ -213,7 +211,7 @@ data class TransactionState(
     val description:String = "",
     val transactionScreen: IncomeExpenseDestination = IncomeDestination,
     //For opening a dialog
-    val openDialog: Boolean = true,
+    var openDialog: Boolean = true,
     val isUpdatingTransaction:Boolean = false
 
 

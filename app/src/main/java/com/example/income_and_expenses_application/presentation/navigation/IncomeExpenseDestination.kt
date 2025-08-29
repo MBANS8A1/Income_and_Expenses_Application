@@ -17,21 +17,16 @@ sealed class IncomeExpenseDestination {
 }
 
 object HomeDestination: IncomeExpenseDestination(){
-    override val iconResId: Int
-        get() = R.drawable.ic_home
-    override val routePath: String
-        get() = "home"
-    override val pageTitle: String
-        get() = "Home"
+    override val iconResId: Int = R.drawable.ic_home
+    override val routePath: String = "home"
+    override val pageTitle: String = "Home"
 }
 
 object IncomeDestination: IncomeExpenseDestination(){
     override val iconResId: Int
         get() = R.drawable.ic_income_dollar
-    override val routePath: String
-        get() = "income"
-    override val pageTitle: String
-        get() = "Income"
+    override val routePath: String = "income"
+    override val pageTitle: String = "Income"
 }
 
 object ExpenseDestination: IncomeExpenseDestination(){
@@ -45,24 +40,22 @@ object ExpenseDestination: IncomeExpenseDestination(){
 
 
 object TransactionDestination:IncomeExpenseDestination(){
-    override val iconResId: Int
-        get() = R.drawable.add_entry
-    override val routePath: String
-        get() = "transaction"
-    override val pageTitle: String
-        get() = "Add Transaction"
+    override val iconResId: Int = R.drawable.add_entry
+    override val routePath: String = "transaction"
+    override val pageTitle: String = "Add Transaction"
 
-    const val transactionTypeArg = "Type"
-    const val idTypeArg = "id"
+     const val TRANSACTIONTYPEARG = "Type"
+     const val IDTYPEARG = "id"
     val arguments = listOf(
-        navArgument(transactionTypeArg){
+        navArgument(TRANSACTIONTYPEARG){
            type =  NavType.StringType
+            defaultValue = ""
         },
-        navArgument(idTypeArg){
+        navArgument(TRANSACTIONTYPEARG){
             type =  NavType.IntType
             defaultValue = -1
         }
         )
     val routeWithArgs =
-        "$routePath?$transactionTypeArg={$transactionTypeArg}&$idTypeArg={$idTypeArg}"
+        "$routePath?$TRANSACTIONTYPEARG={$TRANSACTIONTYPEARG}&$IDTYPEARG={$IDTYPEARG}"
 }

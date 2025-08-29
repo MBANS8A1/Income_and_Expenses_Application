@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,8 +22,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import java.util.Locale
 
 //Constants used to define the tab(s)
 private val TabHeight = 56.dp
@@ -77,6 +79,9 @@ fun IncExpRowTab(
                     color = Color.Unspecified
                 )
             )
+            .clearAndSetSemantics {
+                contentDescription = text
+            }
     ){
         //content:icons
         Icon(
@@ -87,7 +92,7 @@ fun IncExpRowTab(
         //tab should show its name if selected an others should be disabled
         if(selected){
             Spacer(modifier = Modifier.width(12.dp))
-            Text(text=text.uppercase(), color=tabTintColour)
+            Text(text=text.uppercase(Locale.getDefault()), color=tabTintColour)
         }
     }
 }

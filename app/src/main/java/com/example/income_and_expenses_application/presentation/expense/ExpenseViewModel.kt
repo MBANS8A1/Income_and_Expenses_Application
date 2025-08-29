@@ -23,7 +23,7 @@ class ExpenseViewModel @Inject constructor(
         getAllExpenses()
     }
 
-    fun getAllExpenses() = viewModelScope.launch {
+    private fun getAllExpenses() = viewModelScope.launch {
         repository.expense.collectLatest {
             expenseState.copy(
                 expenses = it

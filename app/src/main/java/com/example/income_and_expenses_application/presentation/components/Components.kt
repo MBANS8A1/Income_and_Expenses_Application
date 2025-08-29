@@ -3,6 +3,10 @@ package com.example.income_and_expenses_application.presentation.components
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,12 +23,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
-import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
@@ -47,9 +51,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Popup
 import com.example.income_and_expenses_application.R
-import com.example.income_and_expenses_application.data.local.models.Expense
-import com.example.income_and_expenses_application.data.local.models.Income
 import com.example.income_and_expenses_application.presentation.home.HomeUiState
 import com.example.income_and_expenses_application.presentation.navigation.HomeDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
@@ -77,10 +80,12 @@ fun IncomeExpenseAppBar(
         navigationIcon = {
             //check if inside HomeScreen; if not then we don't show the navigation icon
             AnimatedVisibility(
-                visible = title != HomeDestination.pageTitle
+                visible = title != HomeDestination.pageTitle,
+                enter = fadeIn() + slideInHorizontally(),
+                exit = fadeOut() + slideOutHorizontally()
             ) {
                 IconButton(
-                  onClick = onNavigateUp
+                  onClick = {onNavigateUp.invoke()}
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
@@ -92,9 +97,9 @@ fun IncomeExpenseAppBar(
         },
         actions = {
             //have icon at the end of the top bar to change the theme
-            AnimatedContent(targetState = icon) { iconRes ->
+            AnimatedContent(targetState = icon,label="") { iconRes ->
                 //AnimateContentScope it:Int
-                IconButton(onClick = onSwitchClick) {
+                IconButton(onClick = {onSwitchClick()}) {
                     Icon(
                         painter = painterResource(id=iconRes),
                         contentDescription = null
@@ -105,6 +110,92 @@ fun IncomeExpenseAppBar(
     )
     
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun IncomeExpenseAppBar(
+    @DrawableRes icon: Int = R.drawable.ic_switch_off,
+    title: String,
+    transactionScreens: List<IncomeExpenseDestination>,
+    isDialogShown: Boolean,
+    onDialogChange: () -> Unit,
+    onScreenTypeChange: () -> Unit,
+    onSwitchClick: () -> Unit,
+    onMenuClick: () -> Unit,
+) {
+    TopAppBar(title = {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(text = title)
+            Spacer(modifier = Modifier.size(6.dp))
+            IconButton(
+                onClick = {
+                    // TODO: Launch Dialog
+                    onDialogChange.invoke()
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowDown,
+                    contentDescription = null,
+                )
+            }
+            if (!isDialogShown) {
+                Popup(
+                    onDismissRequest = {
+                        onDialogChange.invoke()
+                    },
+                ) {
+                    Surface(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Column {
+                            transactionScreens.forEach {
+                                Text(
+                                    text = it.pageTitle,
+                                    modifier = Modifier
+                                        .padding(8.dp)
+                                        .clickable {
+                                            onScreenTypeChange.invoke()
+                                        },
+                                )
+
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        }
+
+    },
+        navigationIcon = {
+            IconButton(onClick = { }) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                    contentDescription = null,
+                )
+            }
+        },
+        actions = {
+            AnimatedContent(targetState = icon, label = "") { iconRes ->
+                IconButton(onClick = { onSwitchClick() }) {
+                    Icon(
+                        painter = painterResource(id = iconRes),
+                        contentDescription = ""
+                    )
+                }
+            }
+            IconButton(onClick = { onMenuClick() }) {
+                Icon(
+                    imageVector = Icons.Default.Menu,
+                    contentDescription = ""
+                )
+            }
+        })
+}
+
+
+
 
 
 @Composable
@@ -145,11 +236,11 @@ fun IncomeExpenseFab(
 
 ) {
     FloatingActionButton(
-        onClick = onFabClick
+        onClick = {onFabClick()}
     ){
         Icon(
             imageVector = Icons.Default.Add,
-            contentDescription = null
+            contentDescription = selectedTab.routePath
         )
     }
 }
@@ -229,7 +320,7 @@ private fun AccountIconItem(
 fun ExpenseCard(
     account: HomeUiState,
     onClickSeeAll: () -> Unit,
-    onExpenseClick: (id:Int) -> Unit
+    onExpenseClick: (Int) -> Unit
     ){
 
     OverViewCard(
@@ -242,17 +333,17 @@ fun ExpenseCard(
             it.expenseAmount.toFloat(),
             Util.expenseColour)
                   }
-    ){ expense:Expense ->
+    ){
         ExpenseRow(
-            name = expense.title,
-            description = expense.description,
-            amount = expense.expenseAmount.toFloat(),
+            name = it.title,
+            description = it.description,
+            amount = it.expenseAmount.toFloat(),
             colour = getColour(
-                expense.expenseAmount.toFloat(),
+                it.expenseAmount.toFloat(),
                 Util.expenseColour
             ),
             modifier = Modifier.clickable{
-                onExpenseClick.invoke(expense.id)
+                onExpenseClick.invoke(it.id)
             }
         )
     }
@@ -275,7 +366,7 @@ fun IncomeCard(
             it.incomeAmount.toFloat(),
             Util.incomeColour)
         }
-    ){ income: Income ->
+    ){ income ->
         IncomeRow(
             name = income.title,
             description = income.description,
@@ -340,7 +431,13 @@ private fun BaseRow(
     val formattedAmount  = formatAmount(amount)
     Row(
         modifier = modifier
-            .height(68.dp),
+            .height(68.dp)
+            .clearAndSetSemantics {
+                contentDescription =
+                    "$title account ending in ${subtitle.takeLast(4)}," +
+                            " current balance $poundSign$formattedAmount"
+            }
+        ,
         verticalAlignment = Alignment.CenterVertically
     ){
         val typography = MaterialTheme.typography
@@ -489,7 +586,7 @@ fun <T> OverViewDivider(
 }
 
 @Preview(showBackground = true)
-@Composable()
+@Composable
 fun PrevIncomeCard() {
     IncomeCard(
         account = HomeUiState(

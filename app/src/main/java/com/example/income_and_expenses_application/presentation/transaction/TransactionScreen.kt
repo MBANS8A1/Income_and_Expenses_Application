@@ -118,7 +118,7 @@ private fun TransactionScreen(
             transactionCallBack = transactionCallBack,
             isExpenseTransaction = isExpenseTransaction
         )
-        Spacer(modifier = Modifier.size(12.dp))
+        Spacer(modifier = Modifier.height(24.dp))
         TransactionButton(
             state = state,
             transactionCallBack = transactionCallBack,
@@ -263,7 +263,8 @@ fun TransactionDetails(
         AnimatedVisibility(isExpenseTransaction){
             //AnimatedVisibility will track compose tree of the particular animation
             LazyRow {
-                items(Category.values()){ category ->
+                //enum.entries returns a List of the Category constants
+                items(Category.entries.toTypedArray()){ category ->
                     InputChip(
                         selected = category == state.category,
                         onClick = {
