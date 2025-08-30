@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
                     }
                     //Surface container for the background colour from the colorScheme
                     Surface(
-                        modifier = Modifier.fillMaxSize().safeContentPadding(),
+                        modifier = Modifier.fillMaxSize(),
                         color = MaterialTheme.colorScheme.background
                     ) {
                         Scaffold(

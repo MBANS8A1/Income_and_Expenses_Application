@@ -53,6 +53,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import com.example.income_and_expenses_application.R
+import com.example.income_and_expenses_application.data.local.models.Expense
+import com.example.income_and_expenses_application.data.local.models.Income
 import com.example.income_and_expenses_application.presentation.home.HomeUiState
 import com.example.income_and_expenses_application.presentation.navigation.HomeDestination
 import com.example.income_and_expenses_application.presentation.navigation.IncomeExpenseDestination
@@ -236,7 +238,7 @@ fun IncomeExpenseFab(
 
 ) {
     FloatingActionButton(
-        onClick = {onFabClick()}
+        onClick = onFabClick
     ){
         Icon(
             imageVector = Icons.Default.Add,
@@ -320,7 +322,7 @@ private fun AccountIconItem(
 fun ExpenseCard(
     account: HomeUiState,
     onClickSeeAll: () -> Unit,
-    onExpenseClick: (Int) -> Unit
+    onExpenseClick: (id:Int) -> Unit
     ){
 
     OverViewCard(
@@ -333,17 +335,17 @@ fun ExpenseCard(
             it.expenseAmount.toFloat(),
             Util.expenseColour)
                   }
-    ){
+    ){expense: Expense ->
         ExpenseRow(
-            name = it.title,
-            description = it.description,
-            amount = it.expenseAmount.toFloat(),
+            name = expense.title,
+            description = expense.description,
+            amount = expense.expenseAmount.toFloat(),
             colour = getColour(
-                it.expenseAmount.toFloat(),
+                expense.expenseAmount.toFloat(),
                 Util.expenseColour
             ),
             modifier = Modifier.clickable{
-                onExpenseClick.invoke(it.id)
+                onExpenseClick.invoke(expense.id)
             }
         )
     }
@@ -366,7 +368,7 @@ fun IncomeCard(
             it.incomeAmount.toFloat(),
             Util.incomeColour)
         }
-    ){ income ->
+    ){ income: Income ->
         IncomeRow(
             name = income.title,
             description = income.description,

@@ -118,7 +118,7 @@ private fun TransactionScreen(
             transactionCallBack = transactionCallBack,
             isExpenseTransaction = isExpenseTransaction
         )
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.size(12.dp))
         TransactionButton(
             state = state,
             transactionCallBack = transactionCallBack,
@@ -135,8 +135,7 @@ private fun TransactionButton(
 ) {
     //When the transaction button is clicked the user can navigate back
     val buttonTitle = if(state.isUpdatingTransaction) "Update Transaction"
-                else "Add Transaction"
-
+                      else "Add Transaction"
     Button(
         onClick = {
             //check if I am updating or adding
@@ -318,6 +317,7 @@ private fun IncExpDate(
                     Button(
                         onClick = {
                             onDateChange(datePickerState.selectedDateMillis)
+                            openDateDialog = false
                         }
                     ){
                         Text(text="Submit")
@@ -335,7 +335,7 @@ private fun IncExpDate(
                 },
                 content = {
                     DatePicker(
-                        state = datePickerState,
+                        state = datePickerState
                     )
                 }
             )

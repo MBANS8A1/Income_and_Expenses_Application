@@ -17,16 +17,21 @@ sealed class IncomeExpenseDestination {
 }
 
 object HomeDestination: IncomeExpenseDestination(){
-    override val iconResId: Int = R.drawable.ic_home
-    override val routePath: String = "home"
-    override val pageTitle: String = "Home"
+    override val iconResId: Int
+        get() = R.drawable.ic_home
+    override val routePath: String
+        get() = "home"
+    override val pageTitle: String
+        get() = "Home"
 }
 
 object IncomeDestination: IncomeExpenseDestination(){
     override val iconResId: Int
         get() = R.drawable.ic_income_dollar
-    override val routePath: String = "income"
-    override val pageTitle: String = "Income"
+    override val routePath: String
+        get() = "income"
+    override val pageTitle: String
+        get() = "Income"
 }
 
 object ExpenseDestination: IncomeExpenseDestination(){

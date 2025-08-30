@@ -24,7 +24,7 @@ class IncomeViewModel @Inject constructor(
 
     private fun getAllIncomes() = viewModelScope.launch {
         repository.income.collectLatest {
-            incomeState.copy(
+           incomeState = incomeState.copy(
                 incomes = it
             )
         }

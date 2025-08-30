@@ -23,7 +23,7 @@ object DatabaseModule {
             IncomeExpenseDatabase::class.java,
             "transaction_db"
         )
-            .fallbackToDestructiveMigration(true)
+//            .fallbackToDestructiveMigration(true)
             .build()
     }
 

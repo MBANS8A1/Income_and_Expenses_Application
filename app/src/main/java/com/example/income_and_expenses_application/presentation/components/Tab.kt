@@ -92,7 +92,7 @@ fun IncExpRowTab(
         //tab should show its name if selected an others should be disabled
         if(selected){
             Spacer(modifier = Modifier.width(12.dp))
-            Text(text=text.uppercase(Locale.getDefault()), color=tabTintColour)
+            Text(text=text.uppercase(), color=tabTintColour)
         }
     }
 }

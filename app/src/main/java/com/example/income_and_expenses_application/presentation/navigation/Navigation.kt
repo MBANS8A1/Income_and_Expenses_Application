@@ -133,7 +133,7 @@ fun NavHostController.navigateToSingleTop(route:String){
 
 fun NavHostController.navigateToTransactionScreen(
     id: Int = -1,
-    transType: String
+    transType: String = ""
 
 ){
     //create a route to contain the data I have
