@@ -56,11 +56,11 @@ object TransactionDestination:IncomeExpenseDestination(){
            type =  NavType.StringType
             defaultValue = ""
         },
-        navArgument(TRANSACTIONTYPEARG){
+        navArgument(IDTYPEARG){
             type =  NavType.IntType
             defaultValue = -1
         }
         )
-    val routeWithArgs =
+    var routeWithArgs =
         "$routePath?$TRANSACTIONTYPEARG={$TRANSACTIONTYPEARG}&$IDTYPEARG={$IDTYPEARG}"
 }
