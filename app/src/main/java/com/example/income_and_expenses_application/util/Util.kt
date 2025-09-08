@@ -106,22 +106,22 @@ val incomeList = listOf(
     ),
     Income(
         incomeAmount = 3000.0,
-        title= "Side Project",
-        description = "Payment from upwork project",
+        title= "Business",
+        description = "Income from music beats licensing",
         entryDate = formatDate(date),
         date =  date.time
     ),
     Income(
-        incomeAmount = 1000.0,
+        incomeAmount = 1200.0,
         title= "Tutor Project",
-        description = "Payment from students for coding session",
+        description = "Payment from students for coding sessions",
         entryDate = formatDate(date),
         date =  date.time
     ),
     Income(
-        incomeAmount = 1000.0,
+        incomeAmount = 1500.0,
         title= "Vending Machine",
-        description = "Payment from selling soft drinks",
+        description = "Monthly soft drinks and snacks sales income",
         entryDate = formatDate(date),
         date =  date.time
     )
