@@ -35,6 +35,8 @@
 
    The expense screen can be reached by clicking the "SEE ALL" button below the expense card, which contains the rows of expenses on the home screen. Or you get to it via clicking the icon at the bottom tab of      the home screen (the dollar icon with the an up arrow).
 
+   When on the expense screen you see a similar set up as on the income screen but with the phrase "Pay + [sum of total expenses]" surrounded by an animated yellow ring with segments divided according to their      proportion of the total.
+
    
 
    
