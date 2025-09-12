@@ -131,7 +131,7 @@ val expenseList = listOf(
     Expense(
         entryDate = formatDate(date),
         expenseAmount = 50.0,
-        category= "Entertainment",
+        category= "SUBSCRIPTION",
         title = "Netflix Subscription",
         description = "Paid Netflix for monthly subscription",
         date = date.time
@@ -139,7 +139,7 @@ val expenseList = listOf(
     Expense(
         entryDate = formatDate(date),
         expenseAmount = 100.0,
-        category= "Food and Drinks",
+        category= "FOOD_DRINK",
         title = "Groceries",
         description = "Paid for monthly groceries",
         date = date.time
@@ -147,7 +147,7 @@ val expenseList = listOf(
     Expense(
         entryDate = formatDate(date),
         expenseAmount = 500.0,
-        category= "Vehicle",
+        category= "VEHICLE",
         title = "Car Maintenance",
         description = "Paid car tyre, brake pad and oil change",
         date = date.time
@@ -155,7 +155,7 @@ val expenseList = listOf(
     Expense(
         entryDate = formatDate(date),
         expenseAmount = 1000.0,
-        category= "Housing",
+        category= "HOME",
         title = "Rent",
         description = "Paid for monthly rent for apartment",
         date = date.time
@@ -163,7 +163,7 @@ val expenseList = listOf(
     Expense(
         entryDate = formatDate(date),
         expenseAmount = 230.0,
-        category= "Business Expense",
+        category= "BUSINESS",
         title = "Website Hosting",
         description = "Paid Hostinger to host my UX/UI bootcamp site",
         date = date.time

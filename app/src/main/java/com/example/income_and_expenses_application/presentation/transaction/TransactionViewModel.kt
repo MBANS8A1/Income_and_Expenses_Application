@@ -61,7 +61,7 @@ class TransactionViewModel @AssistedInject constructor(
         get() = state.title.isNotEmpty() &&
                 state.amount.isNotEmpty() &&
                 state.description.isNotEmpty()
-    /*Now create a factory and help the the ViewModel to be constructed so that Dagger-Hilt
+    /*Now create a factory and help the ViewModel to be constructed so that Dagger-Hilt
       recognises the variables and does not complain it cannot create them at compile time.
       Variables are needed at runtime. id is not know when an application is open, but it will
       be when an item is clicked. I need to create a ViewModel factory that can be used.

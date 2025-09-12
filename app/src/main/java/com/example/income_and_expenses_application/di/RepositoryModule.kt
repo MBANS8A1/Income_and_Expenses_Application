@@ -17,3 +17,5 @@ abstract class RepositoryModule {
         repositoryImplementation: RepositoryImplementation
     ):Repository
 }
+/*binding the repository to its implementation with @Binds with an abstract method
+in an abstract class* -important for when the repository is used in the viewModel*/

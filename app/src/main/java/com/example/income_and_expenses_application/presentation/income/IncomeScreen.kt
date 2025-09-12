@@ -38,7 +38,7 @@ fun IncomeScreen(
         //row composable scope
         IncomeRow(
                 name = it.title,
-                description = "Receive ${formatDetailDate(it.date)}",
+                description = "Received ${formatDetailDate(it.date)}",
                 amount= it.incomeAmount.toFloat(),
                 colour = getColour(it.incomeAmount.toFloat(),
                     Util.incomeColour

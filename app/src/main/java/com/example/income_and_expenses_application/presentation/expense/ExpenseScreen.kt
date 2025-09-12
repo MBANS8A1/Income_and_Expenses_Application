@@ -40,7 +40,7 @@ fun ExpenseScreen(
         expense.apply{
         ExpenseRow(
             name = expense.title,
-            description = "Receive ${formatDetailDate(expense.date)}",
+            description = "Received ${formatDetailDate(expense.date)}",
             amount = expense.expenseAmount.toFloat(),
             colour = getColour(
                 expense.expenseAmount.toFloat(),
