@@ -16,10 +16,17 @@
       three will remain shown.  Doing this will change the total balance as well as the "TOTAL INCOME" and "TOTAL EXPENSE" cards.
    -  Importantly: there is a bottom tab that has a row of icons (dollar icons with down and up arrows, home icon and a floating action button (with a "+" sign in the center of it).
 
+   //Image of Home Screen
+
   ### Income Screen
    How can it be reached:
 
-   The Income Screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the Home Screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow).
+   The income screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the home screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow).
+
+   //Image of Income Screen
+   For the income screen you should see the "Receive + [sum of total income]" surrounded by a green ring with segments divided according to their proportion of the total.
+
+   
 
    
 
