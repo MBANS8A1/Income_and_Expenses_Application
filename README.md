@@ -17,10 +17,9 @@
    -  Importantly: there is a bottom tab that has a row of icons (dollar icons with down and up arrows, home icon and a floating action button (with a "+" sign in the center of it).
 
   ### Income Screen
-  
-  How can it be reached:
+   How can it be reached:
 
-    The Income Screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the Home Screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow)
+   The Income Screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the Home Screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow)
      
 
      
