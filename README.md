@@ -21,13 +21,19 @@
   ### Income Screen
    How can it be reached:
 
-   The income screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the home screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow).
+   The income screen can be reached by clicking the "SEE ALL" button below the income card, which contains the rows of incomes on the home screen. Or you can reach it by clicking the icon at the bottom tab of the home screen (the dollar icon with a down arrow).
 
-   For the income screen you should see the "Receive + [sum of total income]" surrounded by a green ring with segments divided according to their proportion of the total.
+   For the income screen you should see the "Receive + [sum of total income]" surrounded by an animated green ring with segments divided according to their proportion of the total.
    //Image of Income Screen
 
 
    You can scroll down a view the different incomes along with the day and month the income was received. By clicking on a particular income you will taken to the Add Transaction screen where you can update the     income if you want to.
+
+
+  ### Expense Screen
+   How it can be reached:
+
+   The expense screen can be reached by clicking the "SEE ALL" button below the expense card, which contains the rows of expenses on the home screen. Or you get to it via clicking the icon at the bottom tab of      the home screen (the dollar icon with the an up arrow).
 
    
 
