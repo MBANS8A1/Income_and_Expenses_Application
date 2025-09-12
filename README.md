@@ -12,7 +12,7 @@
    -  Next is your total balance which is calculated by subtracting the total expenses from the total incomes.
    -  Below the total balance are cards which display the "TOTAL INCOME" and "TOTAL EXPENSE" with  up and down arrow icons to better distinguish them
    -  Next by scrolling down you can see the rows the first three income and expenses and a button called "SEE ALL" below. By clicking "SEE ALL" you will be taking to the Income Screen or Expense Screen.
-   -  If you scroll all the way down to the bottom you will see "Insert Income" and "Insert Expense" buttons; if you click them you will see a random income/expense be added to the rows of existing ones but onlly
+   -  If you scroll all the way down to the bottom you will see "Insert Income" and "Insert Expense" buttons; if you click them you will see a random income/expense be added to the rows of existing ones but only
       three will remain shown.  Doing this will change the total balance as well as the "TOTAL INCOME" and "TOTAL EXPENSE" cards.
    -  Importantly: there is a bottom tab that has a row of icons (dollar icons with down and up arrows, home icon and a floating action button (with a "+" sign in the center of it).
 
@@ -23,8 +23,11 @@
 
    The income screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the home screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow).
 
-   //Image of Income Screen
    For the income screen you should see the "Receive + [sum of total income]" surrounded by a green ring with segments divided according to their proportion of the total.
+   //Image of Income Screen
+
+
+   You can scroll down a view the different incomes along with the day and month the income was received. By clicking on a particular income you will taken to the Add Transaction screen where you can update the     income if you want to.
 
    
 
