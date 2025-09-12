@@ -19,7 +19,11 @@
   ### Income Screen
    How can it be reached:
 
-   The Income Screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the Home Screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow)
+   The Income Screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the Home Screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow).
+
+   
+
+   
      
 
      
