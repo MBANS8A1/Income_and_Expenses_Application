@@ -47,7 +47,20 @@
 
    The transaction screen can be reached in multiple ways:
 
-   1. You can get there from the the home screen by clicking on the floating action button (the button with the "+" sign in bottom full width tab bar.
+   1. You can get there from the the home screen by clicking on the floating action button (the button with the "+" sign) in bottom full width tab bar.
+   2. You can also get there by clicking an income or expense row item in the the income card or expense card (located on the home screen)
+   3. If you are on the income screen or expense screen you can click any listed income or expense.
+
+   Note: If you choose to access transaction screen via method 1, then this way is for adding a transaction while the other ways are for updating existing transactions.
+
+
+   //Image of transaction screen (adding a transaction)
+
+   //Image of transaction screen (updating an existing transaction)
+
+   Note: You can fill in the information and then click the last pill-shaped green button at the bottom labelled either "Add Transaction" or "Update Transaction". You can only add a transaction once the fields
+   have been filled in. Whether you are adding a transaction or updating an existing one you can change the date for recording the transaction by selecting the down arrowhead next to the calendar icon and           current date.
+  
 
     
 
