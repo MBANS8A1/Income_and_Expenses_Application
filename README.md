@@ -40,6 +40,12 @@
 
    As with the income screen you cans scroll down and view the rows of different expenses along with the day and month they were received on the app. By clicking on a particular expense you will taken to the        "Add Transaction" screen, where you can update the expense if you wish.
 
+
+  ### Add Transaction Screen.
+    How it can be reached:
+
+    
+
    
 
    
