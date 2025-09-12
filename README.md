@@ -14,6 +14,13 @@
    -  Next by scrolling down you can see the rows the first three income and expenses and a button called "SEE ALL" below. By clicking "SEE ALL" you will be taking to the Income Screen or Expense Screen.
    -  If you scroll all the way down to the bottom you will see "Insert Income" and "Insert Expense" buttons; if you click them you will see a random income/expense be added to the rows of existing ones but onlly
       three will remain shown.  Doing this will change the total balance as well as the "TOTAL INCOME" and "TOTAL EXPENSE" cards.
+   -  Importantly: there is a bottom tab that has a row of icons (dollar icons with down and up arrows, home icon and a floating action button (with a "+" sign in the center of it).
+
+  ### Income Screen
+  
+  How can it be reached:
+
+    The Income Screen can be reached by clicking the "SEE ALL" button for the below the box, which contains the rows of incomes on the Home Screen or the icon at the bottom tab of the home screen (the dollar         icon with a down arrow)
      
 
      
