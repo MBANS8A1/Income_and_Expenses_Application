@@ -10,36 +10,36 @@
 
    -  At the top is the name of the screen with a lightbulb you can click to change the theme to and from light/dark theme.
    -  Next is your total balance which is calculated by subtracting the total expenses from the total incomes.
-   -  Below the total balance are cards which display the "TOTAL INCOME" and "TOTAL EXPENSE" with  up and down arrow icons to better distinguish them
-   -  Next by scrolling down you can see the rows the first three income and expenses and a button called "SEE ALL" below. By clicking "SEE ALL" you will be taking to the Income Screen or Expense Screen.
-   -  If you scroll all the way down to the bottom you will see "Insert Income" and "Insert Expense" buttons; if you click them you will see a random income/expense be added to the rows of existing ones but only
-      three will remain shown.  Doing this will change the total balance as well as the "TOTAL INCOME" and "TOTAL EXPENSE" cards.
-   -  Importantly: there is a bottom full width, which has a row of icons (dollar icons with down and up arrows, home icon and a floating action button (with a "+" sign in the center of it).
+   -  Below the total balance are cards which display the "TOTAL INCOME" and "TOTAL EXPENSE" with up and down arrow icons to better distinguish them.
+   -  Next by scrolling down you can see the rows with the first three incomes and expenses and a button called "SEE ALL" below. By clicking "SEE ALL" you will be taken to the income screen or expense screen.
+   -  If you scroll all the way down to the bottom you will see "Insert Income" and "Insert Expense" buttons; if you click them you will see a random income/expense be added to the rows of existing ones, but only
+      three will remain shown. Doing this will change the total balance as well as the "TOTAL INCOME" and "TOTAL EXPENSE" card amounts.
+   -  Importantly, there is a bottom full width tab bar, which has a row of icons (dollar icons with down and up arrows, home icon and a floating action button (with a "+" sign in the centre of it)).
 
    //Image of Home Screen
 
   ### Income Screen
    How can it be reached:
 
-   The income screen can be reached by clicking the "SEE ALL" button below the income card, which contains the rows of incomes on the home screen. Or you can reach it by clicking the icon at the bottom tab of the home screen (the dollar icon with a down arrow).
+   The income screen can be reached by clicking the "SEE ALL" button below the income card, which contains the rows of incomes on the home screen. Or you can reach it by clicking the icon at the bottom tab bar of the home screen (the dollar icon with a down arrow).
 
-   For the income screen you should see the "Receive + [sum of total income]" surrounded by an animated green ring with segments divided according to their proportion of the total.
+   For the income screen you should see the "Receive + [sum of total income]" surrounded by an animated green ring with segments divided according to their proportion of the total income.
    //Image of Income Screen
 
 
-   You can scroll down and view the different incomes along with the day and month the income was received. By clicking on a particular income you will taken to the "Add Transaction" screen where you can update     the income if you want to.
+   You can scroll down and view the different incomes along with the day and month the income was received. By clicking on a particular income, you will taken to the "Add Transaction" screen where you can update    the income if you want to.
 
 
   ### Expense Screen
    
    How it can be reached:
 
-   The expense screen can be reached by clicking the "SEE ALL" button below the expense card, which contains the rows of expenses on the home screen. Or you get to it via clicking the icon at the bottom tab of      the home screen (the dollar icon with the an up arrow).
+   The expense screen can be reached by clicking the "SEE ALL" button below the expense card, which contains the rows of expenses on the home screen. Or you get to it via clicking the icon at the bottom tab bar     of the home screen (the dollar icon with the up arrow).
 
-   When on the expense screen you see a similar set up as on the income screen but with the phrase "Pay + [sum of total expenses]" surrounded by an animated yellow ring with segments divided according to their      proportion of the total.
+   When on the expense screen, you will see a similar setup as on the income screen but with the phrase "Pay + [sum of total expenses]", surrounded by an animated yellow ring with segments divided according to      their proportion of the total expenses.
    //Image of Expense Screen
 
-   As with the income screen you cans scroll down and view the rows of different expenses along with the day and month they were received on the app. By clicking on a particular expense you will taken to the        "Add Transaction" screen, where you can update the expense if you wish.
+   As with the income screen you can scroll down and view the rows of different expenses, along with the day and month they were received in the app. By clicking on a particular expense you will taken to the        "Add Transaction" screen, where you can update the expense if you wish.
 
   ### Add Transaction Screen.
     
@@ -48,10 +48,10 @@
    The transaction screen can be reached in multiple ways:
 
    1. You can get there from the the home screen by clicking on the floating action button (the button with the "+" sign) in bottom full width tab bar.
-   2. You can also get there by clicking an income or expense row item in the the income card or expense card (located on the home screen)
+   2. You can also get there by clicking an income or expense row item in the income card or expense card (located on the home screen).
    3. If you are on the income screen or expense screen you can click any listed income or expense.
 
-   Note: If you choose to access transaction screen via method 1, then this way is for adding a transaction while the other ways are for updating existing transactions.
+   Note: If you choose to access the transaction screen via method 1, then this way is for adding a transaction while the other ways are for updating existing transactions.
 
 
    //Image of transaction screen (adding a transaction)
