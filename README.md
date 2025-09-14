@@ -29,7 +29,8 @@
    The income screen can be reached by clicking the "SEE ALL" button below the income card, which contains the rows of incomes on the home screen. Or you can reach it by clicking the icon at the bottom tab bar of the home screen (the dollar icon with a down arrow).
 
    For the income screen you should see the "Receive + [sum of total income]" surrounded by an animated green ring with segments divided according to their proportion of the total income.
-   //Image of Income Screen
+    
+   <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo4.png" alt="Income Screen" width ="250" height="490" >
 
 
    You can scroll down and view the different incomes along with the day and month the income was received. By clicking on a particular income, you will taken to the "Add Transaction" screen where you can update    the income if you want to.
@@ -42,7 +43,8 @@
    The expense screen can be reached by clicking the "SEE ALL" button below the expense card, which contains the rows of expenses on the home screen. Or you get to it via clicking the icon at the bottom tab bar     of the home screen (the dollar icon with the up arrow).
 
    When on the expense screen, you will see a similar setup as on the income screen but with the phrase "Pay + [sum of total expenses]", surrounded by an animated yellow ring with segments divided according to      their proportion of the total expenses.
-   //Image of Expense Screen
+
+   <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo5.png" alt="Expense Screen" width ="250" height="490" >
 
    As with the income screen you can scroll down and view the rows of different expenses, along with the day and month they were received in the app. By clicking on a particular expense you will taken to the        "Add Transaction" screen, where you can update the expense if you wish.
 
