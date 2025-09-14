@@ -21,7 +21,7 @@
 
    <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo2.png" alt="Home screen (dark)" width ="250" height="490" >
 
-   <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo3.png" alt="Home screen (dark)" width ="250" height="490" >
+   <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo3.png" alt="Home screen bottom" width ="250" height="490" >
 
   ### Income Screen
    How can it be reached:
@@ -60,11 +60,14 @@
 
    Note: If you choose to access the transaction screen via method 1, then this way is for adding a transaction while the other ways are for updating existing transactions.
 
+  <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo6.png" alt="Add an income transaction" width ="250" height="490" >
 
-   //Image of transaction screen (adding a transaction)
+  <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo7.png" alt="Update an income transaction" width ="250" height="490" >
 
-   //Image of transaction screen (updating an existing transaction)
+  <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo8.png" alt="Add an expense transaction" width ="250" height="490" >
 
+  <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo9.png" alt="Update an expense transaction" width ="250" height="490" >
+   
    Note: You can fill in the information and then click the last pill-shaped green button at the bottom labelled either "Add Transaction" or "Update Transaction". You can only add a transaction once the fields
    have been filled in. Whether you are adding a transaction or updating an existing one you can change the date for recording the transaction by selecting the down arrowhead next to the calendar icon and           current date.
   
