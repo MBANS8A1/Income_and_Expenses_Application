@@ -16,7 +16,12 @@
       three will remain shown. Doing this will change the total balance as well as the "TOTAL INCOME" and "TOTAL EXPENSE" card amounts.
    -  Importantly, there is a bottom full width tab bar, which has a row of icons (dollar icons with down and up arrows, home icon and a floating action button (with a "+" sign in the centre of it)).
 
-   //Image of Home Screen
+  
+  <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo1.png" alt="Home screen (light)" width ="250" height="490" >
+
+   <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo2.png" alt="Home screen (dark)" width ="250" height="490" >
+
+   <img src="https://github.com/MBANS8A1/Income_and_Expenses_Application/blob/4a5784f11ba9418ff2cd710eff106856734174e1/app/src/main/res/drawable/incexpense_photo3.png" alt="Home screen (dark)" width ="250" height="490" >
 
   ### Income Screen
    How can it be reached:
